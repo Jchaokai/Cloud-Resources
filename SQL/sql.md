@@ -21,5 +21,7 @@ insert into mytable(col1,col2)
 select col1,col2
 from mytable2;
 
-#
+#将一个表插入到一个新表
+create table newtable as
+select * from mytables;
 ```
