@@ -1,14 +1,14 @@
 ### sql基础
 
-#### 修改表
+#### 修改
 ```sql
 #添加列
 alter table mytable
-add col char(20);
+add col1 char(20);
 
 #删除列
 alter tablemytable
-drop column col;
+drop column col1;
 ```
 #### 插入
 ```sql
