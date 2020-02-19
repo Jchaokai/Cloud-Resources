@@ -8,6 +8,8 @@ add col char(20);
 #删除列
 alter tablemytable
 drop column col;
-
-
+```
+#### 插入
+```sql
+#
 ```
