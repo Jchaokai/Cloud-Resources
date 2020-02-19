@@ -54,7 +54,11 @@ WHERE col LIKE '[^AB]%'; -- 不以 A 和 B 开头的任意文本
 ```
 #### CONCAT()
 ```sql
-/*CONCAT() 用于连接多个字段。许多数据库会使用空格把一个值填充为列宽，因此连接的结果会出现不必要的空格，使用 TRIM() 可以去除首尾空格。*/
+/*CONCAT() 用于连接多个字段。(如果有任何一个参数为null，则返回值为null。)
+
+许多数据库会使用空格把一个值填充为列宽，因此连接的结果会出现不必要的空格，
+使用 TRIM() 可以去除首尾空格。
+*/
 
 SELECT CONCAT(TRIM(col1), '(', TRIM(col2), ')') AS concat_col
 FROM mytable;
