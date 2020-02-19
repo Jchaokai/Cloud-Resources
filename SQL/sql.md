@@ -36,3 +36,4 @@ DESC ：降序
 SELECT *
 FROM mytable
 ORDER BY col1 DESC, col2 ASC;
+```
