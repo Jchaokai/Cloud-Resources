@@ -14,7 +14,12 @@ drop column col;
 ```sql
 #普通插入
 insert into mytable(col1,col2)
-values(val1,val2)
+values(val1,val2);
+
+#插入检索出来的数据
+insert into mytable(col1,col2)
+select col1,col2
+from mytable2;
 
 #
 ```
