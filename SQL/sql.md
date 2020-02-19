@@ -46,6 +46,7 @@ ORDER BY col1 DESC, col2 ASC;
  [ ] 可以匹配集合内的字符，例如 [ab] 将匹配字符 a 或者 b。用脱字符 ^ 可以对其进行否定，也就是不匹配集合内的字符。
 
 使用 Like 来进行通配符匹配。*/
+
 SELECT *
 FROM mytable
 WHERE col LIKE '[^AB]%'; -- 不以 A 和 B 开头的任意文本
