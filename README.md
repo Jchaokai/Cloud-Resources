@@ -1,6 +1,5 @@
 ## README.md
 
-:file_folder: **:**
-
-:clipboard: ~笔记~
-:camera: ^~图床~^
+:file_folder: **文件夹:**
+:clipboard:&ensp;笔记
+:camera: 图床
