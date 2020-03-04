@@ -1,5 +1,5 @@
 ## GO - goroutine
-协程![](https://img-blog.csdn.net/20180108173927945?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcGhhbnRvbV8xMTE=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+协程
 
 
 ### goroutine 调度
@@ -15,7 +15,7 @@ go的调度器内部有三个重要的结构：**G** **M** **P**
 
 **----- 为什么要维护多个P ?**
 
-因为当一个os线程被阻塞时，p可以转而投奔另一个os线程。示意图如下：
-
+因为当一个os线程被阻塞时，p可以转而投奔另一个os线程。示意图如下:
+![](https://img-blog.csdn.net/20180108173927945?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcGhhbnRvbV8xMTE=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 ### goroutine & channel
 
