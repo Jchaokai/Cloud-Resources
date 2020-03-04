@@ -1,5 +1,6 @@
 ## GO - goroutine
-协程
+
+《
 
 
 ### goroutine 调度
@@ -29,3 +30,4 @@ go的调度器内部有三个重要的结构：**G** **M** **P**
 
 #### 参考资料
 1. [golang之goroutine调度的理解](https://blog.csdn.net/phantom_111/article/details/79005490)
+2. [Scalable Go Scheduler Design Doc](https://docs.google.com/document/d/1TTj4T2JO42uD5ID9e89oa0sLKhJYD0Y_kqxDv3I3XMw/edit)
