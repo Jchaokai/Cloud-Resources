@@ -20,10 +20,10 @@ go的调度器内部有三个重要的结构：**G** **M** **P**
 
 1. os线程M0陷入阻塞时，P转而在os线程M1上运行。调度器保证有足够的线程来运行所有的contenxt P（M1可能是创建或者从线程缓存总取出）。
 2. 当M0恢复时，它必须尝试取得一个context P来运行goroutine，一般情况下，它会从其他的os线程那里偷一个context p过来。如果没有偷到的话，它就把goroutine放在一个global runqueue里，然后放入线程缓存里。contexts们也会周期性的检查global runqueue，否则global runqueue上的goroutine永远无法执行。
-————————————————
-版权声明：本文为CSDN博主「phantom_111」的原创文章，遵循 CC 4.0 BY-SA 版权协议，转载请附上原文出处链接及本声明。
-原文链接：https://blog.csdn.net/phantom_111/article/details/79005490
-### goroutine & channel
 
 
 
+
+
+### 参考资料
+1. [golang之goroutine调度的理解](https://blog.csdn.net/phantom_111/article/details/79005490)
