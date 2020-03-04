@@ -1,10 +1,9 @@
 ### GO - goroutine
-
+协程
 
 
 #### goroutine 调度
-G M P 
-==标记==
+==G== ====
 
 
 
