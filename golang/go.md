@@ -17,5 +17,7 @@ go的调度器内部有三个重要的结构：**G** **M** **P**
 
 因为当一个os线程被阻塞时，p可以转而投奔另一个os线程。示意图如下:
 ![](https://img-blog.csdn.net/20180108173927945?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcGhhbnRvbV8xMTE=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+
+1. os线程M0陷入阻塞时，P转而在os线程M1上运行。调度器保证有足够的线程来运行所有的contenxt P（M1可能是创建或者从线程缓存总取出）。
 ### goroutine & channel
 
