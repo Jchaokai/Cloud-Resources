@@ -1,1 +1,1 @@
-### golang中的
+### GO - goroutine
