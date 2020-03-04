@@ -18,9 +18,9 @@ go的调度器内部有三个重要的结构：**G** **M** **P**
 因为当一个os线程被阻塞时，p可以转而投奔另一个os线程。示意图如下:
 ![](https://img-blog.csdn.net/20180108173927945?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcGhhbnRvbV8xMTE=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
-1. os线程M0陷入阻塞时，P转而在os线程M1上运行。调度器保证有足够的线程来运行所有的contenxt P（M1可能是创建或者从线程缓存总取出）。
-2. 当M0恢复时，它必须尝试取得一个context P来运行goroutine，一般情况下，它会从其他的os线程那里偷一个context p过来。如果没有偷到的话，它就把goroutine放在一个global runqueue里，然后放入线程缓存里。contexts们也会周期性的检查global runqueue，否则global runqueue上的goroutine永远无法执行。
-3. **另一种情况:P所分配的任务G很快就执行完了（分配不均）**
+1. **os线程M0陷入阻塞时**，P转而在os线程M1上运行。调度器保证有足够的线程来运行所有的contenxt P（M1可能是创建或者从线程缓存总取出）。
+2. **当M0恢复时**，它必须尝试取得一个context P来运行goroutine，一般情况下，它会从其他的os线程那里偷一个context p过来。如果没有偷到的话，它就把goroutine放在一个global runqueue里，然后放入线程缓存里。contexts们也会周期性的检查global runqueue，否则global runqueue上的goroutine永远无法执行。
+3. **另一种情况:** P所分配的任务G很快就执行完了（分配不均），
 
 
 
