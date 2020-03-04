@@ -1,4 +1,5 @@
 ## README.md
-:laughing
+
+:blush:
 
 笔记、图床
