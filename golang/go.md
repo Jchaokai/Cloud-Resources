@@ -1,5 +1,5 @@
 ## GO - goroutine
-协程
+协程![](https://img-blog.csdn.net/20180108173927945?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcGhhbnRvbV8xMTE=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
 
 ### goroutine 调度
@@ -13,8 +13,9 @@ go的调度器内部有三个重要的结构：**G** **M** **P**
 
 **注意：** P的数量可以通过GOMAXPROCS()来设置，它其实代表真正的并发度，即有多少个goroutine可以同时运行。
 
-**为什么要维护多个P ?**
+**----- 为什么要维护多个P ?**
 
-因为当一个os线程被阻塞时，p可以转而投奔另一个os线程。
+因为当一个os线程被阻塞时，p可以转而投奔另一个os线程。示意图如下：
+
 ### goroutine & channel
 
