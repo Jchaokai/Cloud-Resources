@@ -1,6 +1,7 @@
 ## GO - goroutine
 
-《
+<br/>
+<br/>
 
 
 ### goroutine 调度
@@ -27,6 +28,7 @@ go的调度器内部有三个重要的结构：**G** **M** **P**
 
 
 
+<br/>
 
 #### 参考资料
 1. [golang之goroutine调度的理解](https://blog.csdn.net/phantom_111/article/details/79005490)
