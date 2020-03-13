@@ -25,21 +25,22 @@
 2. 每个微服务单独部署且相互隔离
 3. 通过轻量的API调用
 4. 服务需要保证高可用
-### 微服务优势
+**微服务优势**
 - 松耦合
 - 独立发布
 - 快速迭代
 - 故障隔离
-### 微服务带来的挑战
+ 微服务带来的挑战
 - DevOps要求
 - 系统复杂性
 - 数据一致性
 - 测试复杂性
 
 ### 微服务技术选型
-Java系：Spring Cloud、Dubbo
-Go系：Go-Mirco、Go Kit、Kite
-## Go-Mirco
+- Java系：Spring Cloud、Dubbo
+- Go系：Go-Mirco、Go Kit、Kite
+
+### Go-Mirco
 
 
 
