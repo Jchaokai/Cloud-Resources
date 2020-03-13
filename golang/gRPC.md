@@ -42,7 +42,11 @@ gRPC开发同样分三步：
 ### gRPC入门示例
 - 编写proto代码
 - 编写server端 golang代码
-- 编写
+- 编写client端 golang代码
+- gRPC跨语言调用
+- 生成Python代码
+- 编写Pyton版 client
+- 
 
 
 
