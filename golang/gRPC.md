@@ -15,4 +15,5 @@
 ```go
 go get -u google.golang.org/grpc
 ```
-2. 安装protobuf
+2. 安装protobuf v3
+
