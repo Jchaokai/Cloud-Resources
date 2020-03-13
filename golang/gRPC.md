@@ -10,6 +10,7 @@
 使用gRPC， 我们可以一次性的在一个.proto文件中定义服务并使用任何支持它的语言去实现客户端和服务端，反过来，它们可以应用在各种场景中，从Google的服务器到你自己的平板电脑—— gRPC帮你解决了不同语言及环境间通信的复杂性。使用protocol buffers还能获得其他好处，包括高效的序列号，简单的IDL以及容易进行接口更新。
 总之一句话，使用gRPC能让我们更容易编写跨语言的分布式代码。
 
+- - - 
 ### 安装gRPC
 1. **安装gRPC**
 ```go
@@ -40,9 +41,11 @@ gRPC开发同样分三步：
 
 ### gRPC入门示例
 - 编写protobuf代码
-gRPC是基于`Protocol Buffers`
+gRPC是基于`Protocol Buffers`。
 `Protocol Buffers`是一种与语言无关，平台无关的可扩展机制，用于序列化结构化数据。使用`Protocol Buffers`可以一次定义结构化的数据，然后可以使用特殊生成的源代码轻松地在各种数据流中使用各种语言编写和读取结构化数据。
+```go
 
+```
 - 编写server端 golang代码
 - 编写client端 golang代码
 - gRPC跨语言调用
