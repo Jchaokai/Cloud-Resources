@@ -65,6 +65,10 @@ message HelloReply {
     string message = 1;
 }
 ```
+执行下面的命令，生成go语言源代码：
+```shell
+
+```
 - 编写server端 golang代码
 - 编写client端 golang代码
 - gRPC跨语言调用
