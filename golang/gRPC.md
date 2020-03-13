@@ -21,12 +21,12 @@ go get -u google.golang.org/grpc
 下载完之后，执行下面的步骤：
 
 解压下载好的文件
-把`protoc.exe`二进制文件的路径加到环境变量中
-接下来执行下面的命令安装protoc的Go插件：
+1. 把`protoc.exe`二进制文件的路径加到环境变量中
+2. 执行下面的命令安装protoc的Go插件：
 ```shell
 go get -u github.com/golang/protobuf/protoc-gen-go'
 ```
-编译插件protoc-gen-go将会安装到`$GOBIN` (默认是`$GOPATH/bin`)，它必须在你的环境变量`$PATH`中 以便协议编译器protoc能够找到它。
+编译插件`protoc-gen-go`将会安装到`$GOBIN` (默认是`$GOPATH/bin`)，它必须在你的环境变量`$PATH`中&ensp;以便协议编译器`protoc`能够找到它。
 
 ### gRPC开发分三步
 把大象放进冰箱分几步？
@@ -39,4 +39,5 @@ gRPC开发同样分三步：
 编写.proto文件，生成指定语言源代码。
 编写服务端代码
 编写客户端代码
-gRPC入门示例
+### gRPC入门示例
+
