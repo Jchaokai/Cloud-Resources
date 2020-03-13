@@ -111,7 +111,41 @@ func main() {
 	}
 }
 ```
+将上面的代码保存到`gRPC_demo/helloworld/server/server.go`文件中，编译并执行：
+```
+cd helloworld/server
+go build
+./server
+```
 **3. 编写client端 golang代码**
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+
+	pb "gRPC_demo/helloworld/pb"
+	"google.golang.org/grpc"
+)
+
+func main() {
+	// 连接服务器
+	conn, err := grpc.Dial(":8972", grpc.WithInsecure())
+	if err != nil {
+		fmt.Printf("faild to connect: %v", err)
+	}
+	defer conn.Close()
+
+	c := pb.NewGreeterClient(conn)
+	// 调用服务端的SayHello
+	r, err := c.SayHello(context.Background(), &pb.HelloRequest{Name: "q1mi"})
+	if err != nil {
+		fmt.Printf("could not greet: %v", err)
+	}
+	fmt.Printf("Greeting: %s !\n", r.Message)
+}
+```
 
 **4. gRPC跨语言调用**
 
