@@ -26,7 +26,7 @@ go get -u google.golang.org/grpc
 ```shell
 go get -u github.com/golang/protobuf/protoc-gen-go'
 ```
-编译插件protoc-gen-go将会安装到`$GOBIN`，默认是`$GOPATH/bin`，它必须在你的$PATH中以便协议编译器protoc能够找到它。
+编译插件protoc-gen-go将会安装到`$GOBIN` (默认是`$GOPATH/bin`)，它必须在你的环境变量`$PATH`中 以便协议编译器protoc能够找到它。
 
 gRPC开发分三步
 把大象放进冰箱分几步？
