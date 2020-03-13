@@ -27,17 +27,17 @@ go get -u google.golang.org/grpc
 go get -u github.com/golang/protobuf/protoc-gen-go'
 ```
 编译插件`protoc-gen-go`将会安装到`$GOBIN` (默认是`$GOPATH/bin`)，它必须在你的环境变量`$PATH`中&ensp;以便协议编译器`protoc`能够找到它。
-
+- - - 
 ### gRPC开发分三步
 把大象放进冰箱分几步？
+&emsp;把冰箱门打开。
+&emsp;把大象放进去。
+&emsp;把冰箱门带上。
 
-把冰箱门打开。
-把大象放进去。
-把冰箱门带上。
 gRPC开发同样分三步：
+&emsp;编写.proto文件，生成指定语言源代码。
+&emsp;编写服务端代码
+&emsp;编写客户端代码
 
-编写.proto文件，生成指定语言源代码。
-编写服务端代码
-编写客户端代码
 ### gRPC入门示例
 
