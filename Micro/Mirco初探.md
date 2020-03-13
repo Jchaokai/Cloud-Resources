@@ -16,7 +16,7 @@
  SOA架构的升级，不同于SOA拆分成一个个的服务，拆分的力度非常小，可能将同一个服务下的不同业务都拆分开来，强调一个“微”字，每个业务可能会用不同的数据库，技术栈 · · · 
 
 **SOA与微服务的区别示意图：**
-![SOA与微服务区别.JPG]()
+![SOA与微服务区别.JPG](https://github.com/Jchaokai/Cloud-Resources/blob/master/images/SOA%E4%B8%8E%E5%BE%AE%E6%9C%8D%E5%8A%A1%E5%8C%BA%E5%88%AB.JPG)
 
 ==架构只有合适不合适！==
 
@@ -45,7 +45,9 @@ Go系：Go-Mirco、Go Kit、Kite
 
 ### Go微服务架构
 
-![GoMirco架构.JPG](1)
+![](https://github.com/Jchaokai/Cloud-Resources/blob/master/images/Go-Mirco%E6%9E%B6%E6%9E%84.JPG)
+
+![GoMirco架构.JPG](https://github.com/Jchaokai/Cloud-Resources/blob/master/images/Go-Mirco%E6%9E%B6%E6%9E%84.JPG)
 
 
 
