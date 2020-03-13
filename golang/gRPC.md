@@ -39,7 +39,9 @@ gRPC开发同样分三步：
 &emsp;编写客户端代码
 
 ### gRPC入门示例
-- 编写proto代码
+- 编写protobuf代码
+gRPC是基于`Protocol Buffers`
+`Protocol Buffers`是一种与语言无关，平台无关的可扩展机制，用于序列化结构化数据。使用`Protocol Buffers`可以一次定义结构化的数据，然后可以使用特殊生成的源代码轻松地在各种数据流中使用各种语言编写和读取结构化数据。
 
 - 编写server端 golang代码
 - 编写client端 golang代码
