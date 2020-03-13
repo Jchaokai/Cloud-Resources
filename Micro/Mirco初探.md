@@ -4,7 +4,7 @@
 &emsp;**单体架构&emsp;->&emsp;垂直架构&emsp;->&emsp;SOA架构&emsp;->&emsp;微服务架构**
 <br/>
 - 单体架构
- <P>将所有的功能放到一个应用中，最快的做出一个demo出来</p>
+ <P style="font-size:15px">将所有的功能放到一个应用中，最快的做出一个demo出来,一台服务器就可以</p>
 
 - 垂直架构
 - SOA架构
