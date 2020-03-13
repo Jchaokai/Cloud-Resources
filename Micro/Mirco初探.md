@@ -35,6 +35,11 @@
 - 系统复杂性
 - 数据一致性
 - 测试复杂性
+
+## 微服务技术选型
+Java系：Spring Cloud、Dubbo
+Go系：Go-
+
 ## Go-Mirco
 
 
