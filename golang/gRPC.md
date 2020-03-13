@@ -146,12 +146,24 @@ func main() {
 	fmt.Printf("Greeting: %s !\n", r.Message)
 }
 ```
-
+将上面的代码保存到`gRPC_demo/helloworld/client/client.go`文件中，编译并执行：
+```
+cd helloworld/client/
+go build
+./client
+```
+得到输出如下（注意要先启动server端再启动client端）：
+```
+$ ./client 
+Greeting: Hello dasdsa!
+```
 **4. gRPC跨语言调用**
 
 **5. 生成Python代码**
 
 **6. 编写Pyton版 client**
+
+
 
 
 
