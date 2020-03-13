@@ -35,6 +35,11 @@
 Java系：Spring Cloud、Dubbo
 Go系：Go-Mirco、Go Kit、Kite
 
+### 微服务核心
+1. API gateway
+2. 进程间通信
+3. 服务注册发现
+4. 时间驱动的
 ### Go微服务架构
 
 ![GoMirco架构.JPG](1)
