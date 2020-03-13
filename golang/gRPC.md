@@ -12,6 +12,7 @@
 
 ### 安装gRPC
 1. 安装gRPC
-···go
-
+```go
+go get -u google.golang.org/grpc
+```
 2. 安装protobuf
