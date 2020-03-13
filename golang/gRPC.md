@@ -67,13 +67,14 @@ message HelloReply {
 ```
 执行下面的命令，生成go语言源代码：
 ```shell
-
+protoc -I helloworld/ helloworld/pb/helloworld.proto --go_out=plugins=grpc:helloworld
+在gRPC_demo/helloworld/pb目录下会生成helloworld.pb.go文件。
 ```
-- 编写server端 golang代码
-- 编写client端 golang代码
-- gRPC跨语言调用
-- 生成Python代码
-- 编写Pyton版 client
+**2. 编写server端 golang代码**
+**3. 编写client端 golang代码**
+**4. gRPC跨语言调用**
+**5. 生成Python代码**
+**6. 编写Pyton版 client**
 
 
 
