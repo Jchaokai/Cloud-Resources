@@ -16,4 +16,13 @@
 go get -u google.golang.org/grpc
 ```
 2. 安装protobuf v3
+安装用于生成gRPC服务代码的协议编译器，最简单的方法是从下面的链接：下载适合你平台的预编译好的二进制文件（protoc-<version>-<platform>.zip）。
 
+下载完之后，执行下面的步骤：
+
+解压下载好的文件
+把protoc二进制文件的路径加到环境变量中
+接下来执行下面的命令安装protoc的Go插件：
+
+go get -u github.com/golang/protobuf/protoc-gen-go
+编译插件protoc-gen-go将会安装到$GOBIN，默认是$GOPATH/bin，它必须在你的$PATH中以便协议编译器protoc能够找到它。
