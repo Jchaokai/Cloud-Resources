@@ -40,7 +40,9 @@ gRPC开发同样分三步：
 &emsp;编写客户端代码
 
 ### gRPC入门示例
-- 
+- 编写proto代码
+- 编写server端 golang代码
+- 编写
 
 
 
