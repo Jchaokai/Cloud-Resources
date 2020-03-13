@@ -37,7 +37,7 @@ Go系：Go-Mirco、Go Kit、Kite
 
 ### Go微服务架构
 
-
+![GoMirco架构.JPG](1)
 
 
 
