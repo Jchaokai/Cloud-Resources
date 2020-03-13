@@ -1,7 +1,7 @@
 ## 架构的演进之路
 <br/>
 
-&emsp;**单体架构&emsp;=>&emsp;垂直架构&emsp;>&emsp;SOA架构&emsp;>&emsp;微服务架构**
+&emsp;**单体架构&emsp;->&emsp;垂直架构&emsp;->&emsp;SOA架构&emsp;->&emsp;微服务架构**
 <br/>
 - 单体架构
 	
