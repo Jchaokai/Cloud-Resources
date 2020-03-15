@@ -35,9 +35,12 @@
 
 ### 微服务技术选型
 Java系：Spring Cloud、Dubbo
+
+<br/>
 Go系：Go-Mirco、Go Kit、Kite
 
 ### 微服务核心
+
 1. API gateway
 2. 进程间通信
 3. 服务注册发现

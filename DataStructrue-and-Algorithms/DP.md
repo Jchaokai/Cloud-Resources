@@ -2,11 +2,11 @@
 
 DP问题思路图：
 
-![DP问题思路图](C:%5CUsers%5Cjohn%5CDesktop%5CCloud-Resources%5Cimages%5CDP%E9%97%AE%E9%A2%98%E6%80%9D%E8%B7%AF.JPG)
+![DP问题思路图](https://github.com/Jchaokai/Cloud-Resources/blob/master/images/DP%E9%97%AE%E9%A2%98%E6%80%9D%E8%B7%AF.JPG)
 
 -  **[LeetCode 53](https://leetcode-cn.com/problems/maximum-subarray/)**
 
-<img src="C:%5CUsers%5Cjohn%5CDesktop%5CCloud-Resources%5Cimages%5CDP-LeetCode-53.JPG" style="zoom:80%;" />
+<img src="https://github.com/Jchaokai/Cloud-Resources/blob/master/images/DP-LeetCode-53.JPG" style="zoom:80%;" />
 
 ```go
 const (
@@ -33,7 +33,7 @@ func max(a int,b int) int{
 
 - **[leetcode 120](https://leetcode-cn.com/problems/maximum-subarray/)** 
 
-<img src="C:%5CUsers%5Cjohn%5CDesktop%5CCloud-Resources%5Cimages%5CDP-LeetCode-120.JPG" style="zoom:80%;" />
+<img src="https://github.com/Jchaokai/Cloud-Resources/blob/master/images/DP-LeetCode-120.JPG" style="zoom:80%;" />
 
 ```go
 const (
