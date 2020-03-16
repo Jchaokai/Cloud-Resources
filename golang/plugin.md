@@ -33,25 +33,25 @@ go build -buildmode = plugin
 
 ------
 
-<font  id="typeplugin" size="5px" color="#337ab7" >type Plugin</font>
+<h3  id="typeplugin" style="color:#337ab7" >type Plugin</h3>
 
-type Plugin struct {
+type Plugin struct {<br/>
 
 ​	// contains filtered or unexported fields
 
-}
+}<br>
 
 Plugin is a loaded Go plugin.
 
-<h4 id = "1" style="color:#337ab7">func Open(path string) (*Plugin, error)</h4>
+<h3 id = "1" style="color:#337ab7">func Open(path string) (*Plugin, error)</h3>
 
 Open opens a Go plugin. If a path has already been opened, then the existing *Plugin is returned. It is safe for concurrent use by multiple goroutines.
 
-<h4 id = "1" style="color:#337ab7">func (p *Plugin) Lookup(symName string) (Symbol, error)</h4>
+<h3 id = "1" style="color:#337ab7">func (p *Plugin) Lookup(symName string) (Symbol, error)</h3>
 
 Lookup searches for a symbol named symName in plugin p. A symbol is any exported variable or function. It reports an error if the symbol is not found. It is safe for concurrent use by multiple goroutines.
 
-<h4 id= "3" style="color:#337ab7">type Symbol</h4>
+<h3 id= "3" style="color:#337ab7">type Symbol</h3>
 
 type Symbol interface{}
 A Symbol is a pointer to a variable or function.
