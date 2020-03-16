@@ -47,7 +47,7 @@ Plugin is a loaded Go plugin.
 
 Open打开一个Go插件。如果已经打开路径，则返回现有的* Plugin。对于多个goroutine并发使用是安全的。
 
-<h3 id = "1" style="color:#337ab7">func (p *Plugin) Lookup(symName string) (Symbol, error)</h3>
+<h3 id = "2" style="color:#337ab7">func (p *Plugin) Lookup(symName string) (Symbol, error)</h3>
 
 查找在插件p中搜索名为symName的符号。符号是任何导出的变量或函数。如果找不到该符号，它将报告错误。对于多个goroutine并发使用是安全的。
 
