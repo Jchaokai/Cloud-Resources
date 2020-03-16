@@ -37,7 +37,7 @@ go build -buildmode = plugin
 
 type Plugin struct {<br/>
 
-​	// contains filtered or unexported fields
+ // contains filtered or unexported fields
 
 }<br>
 
@@ -45,50 +45,75 @@ Plugin is a loaded Go plugin.
 
 <h3 id = "1" style="color:#337ab7">func Open(path string) (*Plugin, error)</h3>
 
-Open opens a Go plugin. If a path has already been opened, then the existing *Plugin is returned. It is safe for concurrent use by multiple goroutines.
+Open打开一个Go插件。如果已经打开路径，则返回现有的* Plugin。对于多个goroutine并发使用是安全的。
 
 <h3 id = "1" style="color:#337ab7">func (p *Plugin) Lookup(symName string) (Symbol, error)</h3>
 
-Lookup searches for a symbol named symName in plugin p. A symbol is any exported variable or function. It reports an error if the symbol is not found. It is safe for concurrent use by multiple goroutines.
+查找在插件p中搜索名为symName的符号。符号是任何导出的变量或函数。如果找不到该符号，它将报告错误。对于多个goroutine并发使用是安全的。
 
 <h3 id= "3" style="color:#337ab7">type Symbol</h3>
 
 type Symbol interface{}
-A Symbol is a pointer to a variable or function.
+Symbol 是指向变量或函数的指针。
 
-For example, a plugin defined as
+<br/>
+
+------
+
+ 例子:
+
+package main下有两个 .go文件 str.go、main.go
 
 ```go
+// str.go
 package main
 
-// // No C code needed.
-import "C"
+import "strings"
 
-import "fmt"
+func UpperCase(s string) string {
+	return strings.ToUpper(s)
+}
 
-var V int
+```
 
-func F() { fmt.Printf("Hello, number %d\n", V) }
+<br/>
 
+```shell
+
+go build -buildmode=plugin -o str.so str.go
 ```
 
 may be loaded with the Open function and then the exported package symbols V and F can be accessed
 
+<br/>
+
 ```go
-p, err := plugin.Open("plugin_name.so")
-if err != nil {
-	panic(err)
+// main.go
+package main
+
+import (
+	"fmt"
+	"log"
+	"plugin"
+)
+
+func main() {
+	p, err := plugin.Open("str.so")
+	if err != nil {
+		log.Panicf("plugin.Open: %s\n", err)
+	}
+	f, err := p.Lookup("UpperCase")
+	if err != nil {
+		log.Panicf("Lookup UpperCase: %s\n", err)
+	}
+	UpperCase, ok := f.(func(string) string)	//类型断言
+	if !ok {
+		log.Panicf("UpperCase assertion: %s\n", err)
+	}
+	s := UpperCase("hello")
+	fmt.Println(s)
 }
-v, err := p.Lookup("V")
-if err != nil {
-	panic(err)
-}
-f, err := p.Lookup("F")
-if err != nil {
-	panic(err)
-}
-*v.(*int) = 7
-f.(func())() // prints "Hello, number 7"
+
 ```
 
 
