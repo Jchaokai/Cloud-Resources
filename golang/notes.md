@@ -6,11 +6,15 @@
 
     2. nil只能赋值给指针、channel、func、interface、map或slice类型的变量 (非基础类型) 否则会引发 panic
 
+        
+
 - **make** & **new**
 
     ​	new 返回指针(*T)，make 返回引用(T)<br/>
     
     ​	make只用于map slice channel，new  map slice channel时，返回指针，并且是nil
+    
+    
     
 - **Slice Sorting**
 
@@ -31,7 +35,7 @@
     
     ```
 
--  **utf8 length**
+- **utf8 length**
 
     ```go
     import (
@@ -43,6 +47,8 @@
     	fmt.Println(utf8.RuneCountInString("你好"))
     }
     ```
+
+    
 
 - **readline**
 
@@ -163,6 +169,8 @@
     	return strings.ToUpper(s)
     }
     
+    //命令行 go build -buildmode=plugin -o str.so str.go
+    
     // main.go
     package main
     
@@ -177,17 +185,192 @@
     	if err != nil {
     		log.Panicf("plugin.Open: %s\n", err)
     	}
-    	f, err := ___ // A
+    	f, err := p.Lookup("UpperCase")
     	if err != nil {
     		log.Panicf("Lookup UpperCase: %s\n", err)
     	}
-    	UpperCase, ok := ___ // B
+    	UpperCase, ok := f.(func(string) string)
     	if !ok {
     		log.Panicf("UpperCase assertion: %s\n", err)
     	}
     	s := UpperCase("hello")
     	fmt.Println(s)
+}
+    
+    ```
+    
+    
+
+- **String Internal**
+
+    将[]byte 转化成string ，不会导致内存复制
+
+    预期输出为“ 143”
+
+    ```go
+    
+    package main
+    
+    import (
+    	"fmt"
+    	"unsafe"
+    )
+    
+    func main() {
+    	var b = []byte("123")
+    	s := *(*string)(unsafe.Pointer(&b))
+    
+    	b[1] = '4'
+    	fmt.Printf("%+v\n", s) //print 143
     }
+    
     ```
 
     
+
+- **Slice Internal**
+
+    填写注释A处，以确保printOriginalSlice将打印子切片的原始切片
+
+    ```go
+    package main
+    
+    import (
+    	"fmt"
+    	"reflect"
+    	"unsafe"
+    )
+    
+    const M = 10
+    const N = 5
+    
+    func printOriginalSlice(subslice *[]int) {
+    	//A
+        data:=(*[M]int)(unsafe.Pointer(((*reflect.SliceHeader)(unsafe.Pointer(subslice))).Data))
+    
+    	fmt.Printf("original\t%p:%+v\n", data, *data)
+    }
+    
+    func main() {
+    	slice := make([]int, M)
+    	for i, _ := range slice {
+    		slice[i] = i
+    	}
+    	subslice := slice[0:N]
+    
+    	fmt.Printf("slice\t%p:%+v\n", &slice, slice)
+    	fmt.Printf("subslice\t%p:%+v\n", &subslice, subslice)
+    	printOriginalSlice(&subslice)
+    }
+    
+    ```
+
+    
+
+- **Map malloc Threshold** (map malloc阈值)
+
+    What is the malloc threshold of Map object? How to modify it?
+
+    ```
+    
+    The default limit is 128.
+    It can be modified by changing the value of maxKeySize and maxValueSize in runtime.hashmap
+    ```
+
+    
+
+- **runtime.newobject()**
+
+    What does runtime.newobject() do? Does `make()` and `new` operation always invoke runtime.newobject()?
+
+    ```
+    
+    runtime.newobject() is to allocate heap memory.
+    make() and `new` operation will not invoke runtime.newobject() when it is inlined or optimized.
+    ```
+
+    
+
+- **GC**
+
+    简要描述golang的GC怎么工作
+
+    ```
+    MarkWorker goroutine recursively scan all the objects and colors them into white(inaccessible), gray(pending), black(accessible). But finally they will only be black and white objcts. In compile time, the compiler has already injected a snippet called write barrier to monitor all the modifications from any goroutines to heap memory. When "Stop the world" is performed, scheduler hibernates all threads and preempt all goroutines. Garbage collector will recycle all the inaccessible objects so heap or central can reuse. If the whole span of memory are unused, it can be freed to OS. Perform "Start the world" to wake cpu cores and threads, and resume the execution of goroutines.
+    翻译:
+    MarkWorker goroutine递归扫描所有对象，并将它们着色为白色（不可访问），灰色（待处理），黑色（可访问）。 但最终它们只会是黑白对象。 在编译时，编译器已经注入了一个称为写屏障的代码片段，以监视从任何goroutine到堆内存的所有修改。 当执行“ Stop the world”时，调度程序将休眠所有线程并抢占所有goroutine。 垃圾收集器将回收所有无法访问的对象，以便堆或中央对象可以重用。 如果未使用全部内存，则可以将其释放给OS。 执行“Start the world”以唤醒CPU内核和线程，并继续执行goroutine。
+    ```
+
+    
+
+-  **Goroutine Sleep**
+
+    What is the difference between C.sleep() and time.Sleep()?
+
+    ```
+    
+    C.sleep() invokes syscall sleep, which causes idle threads
+    time.Sleep() is optimized for goroutine so syscall sleep is not involved.
+    - - -
+    C.sleep（）调用系统睡眠，这会导致空闲线程 
+    time.Sleep（）针对goroutine进行了优化，因此不涉及系统调用睡眠。
+    ```
+
+
+
+- **Memory Allocation**（内存分配）
+
+     Briefly introduce the strategies that how go runtime allocates memory.
+
+    (简要介绍运行时分配内存的策略。)
+
+    ```
+    
+    For small objects(<=32KB), go runtime starts with cache firstly, then central, and finally heap.
+    For big objects(>32KB), directly from heap.
+    - - - 
+    对于较小的对象（<= 32KB），运行时首先从缓存开始，然后是中央，最后是堆。 
+    对于大对象（> 32KB），直接从堆中分配。
+                                
+    ```
+
+
+
+-  **Stack vs Heap**
+
+    When go runtime allocates memory from heap, and when from stack?
+
+    ```
+    
+    For small objects whose life cycle is only within the stack frame, stack memory is allocated.
+    For small objects that will be passed across stack frames, heap memory.
+    For big objects(>32KB), heap memory.
+    For small objects that could escape to heap but actually inlined, stack memory.
+    - - - 
+    对于生命周期仅在stack的小型对象，将分配stack内存。 
+    对于将在stack之间传递的小对象，请使用heap内存。 
+    对于大对象（> 32KB），堆内存。 
+    对于可能逃逸到堆heap但实际上是内联的小对象，请使用stack内存。
+    ```
+
+
+
+-  **Goroutine Pause or Halt**（Goroutine暂停/停止）
+
+    List the functions can stop or suspend the execution of current goroutine, and explain their differences.
+
+    列出可以停止或暂停当前goroutine执行的函数，并说明它们的区别。
+
+    ```
+    
+    runtime.Gosched: give up CPU core and join the queue, thus will be executed automatically.
+    runtime.gopark: blocked until the callback function unlockf in argument list return false.
+    runtime.notesleep: hibernate the thread.
+    runtime.Goexit: stop the execution of goroutine immediately and call defer, but it will not cause panic.
+    - - - 
+    runtime.Gosched：使当前goroutine放弃处理器，以让其它goroutine运行。它不会挂起当前goroutine，因此当前goroutine未来会恢复执行。
+    runtime.gopark：阻塞，直到参数列表中的回调函数unlockf返回false。
+    runtime.notesleep：休眠线程。
+    runtime.Goexit：立即停止执行goroutine并调用defer，但这不会引起panic。
+                                
+    ```

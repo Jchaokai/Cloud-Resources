@@ -152,7 +152,7 @@ func numDecodings(s string) int {
     for i := 1; i <= n;i++{
         //最后一个是一位数，且不 ==0
         if s[i-1] != '0' { f[i] += f[i-1]}
-        //最后一个是二位数，且 10 <=  <=26
+        //最后一个是二位数
         if i >= 2{
             tmp := (s[i-2] - '0') * 10 + s[i-1] -'0'
             if tmp >= 10 && tmp <= 26 { f[i] += f[i-2] }
