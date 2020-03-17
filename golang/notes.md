@@ -13,9 +13,137 @@
     ​	new 返回指针(*T)，make 返回引用(T)<br/>
     
     ​	make只用于map slice channel，new  map slice channel时，返回指针，并且是nil
+
+
+
+- **空结构体  Empty structs** 
+
+    有什么用 ？
+
+    1. 空结构体可以省内存，但微不足道
+
+    2. 当一个对象只需要方法，不需要存值，不需要保存对象状态时，可以使用空结构体
+
+        ```go
+        type Lamp struct{}
+        
+        func (l Lamp) On() {
+                println("On")
+        
+        }
+        func (l Lamp) Off() {
+                println("Off")
+        }
+        
+        func main() {
+               	// Case #1.
+               	var lamp Lamp
+               	lamp.On()
+               	lamp.Off()
+        	
+               	// Case #2.
+               	Lamp{}.On()
+               	Lamp{}.Off()
+        }
+        ```
+
+    3. 还可以配合channel使用，例子：
+
+        ```
+        func worker(ch chan struct{}) {
+        	<-ch
+        	println("roger")
+        	close(ch)
+        }
+        
+        func main() {
+        	ch := make(chan struct{})
+        	go worker(ch)
+        	
+        	ch <- struct{}{}
+        	
+        	<-ch	//读取已经关闭的channel，会渠道对应type的零值，这里是空的struct{}
+        	
+        	println(“roger")
+        	// Output:
+        	// roger
+        	// roger
+        }
+        ```
+
+        
+
+- **怎么比较两个struct、interface**
+
+    可以用 `==` 比较 `struct`，就象处理其他简单类型一样，**但是要保证它们不含有`slices, maps, functions`，不然编译不通过 &emsp;！ ！ ！**
+
+    ```go
+    type Foo struct {
+    	A int
+    	B string
+    	C interface{}
+    }
+    a := Foo{A: 1, B: "one", C: "two"}
+    b := Foo{A: 1, B: "one", C: "two"}
     
+    println(a == b)
+    // Output: true
     
+    type Bar struct {
+    	A []int
+    }
+    a := Bar{A: []int{1}}
+    b := Bar{A: []int{1}}
     
+    println(a == b)
+    // Output: invalid operation: a == b (struct containing []int cannot be compared)
+    ```
+
+    只要基础类型是“简单” 和 相同，可以用 `==`比较 `interface` ，否则，代码将在运行时 panic：
+
+    ```go
+    var a interface{}
+    var b interface{}
+    
+    a = 10
+    b = 10
+    println(a == b)
+    // Output: true
+    
+    a = []int{1}
+    b = []int{2}
+    println(a == b)
+    // Output: panic: runtime error: comparing uncomparable type []int
+    
+    ```
+
+    包含 slice，map（但不包含函数）的`struct`、`interface`都可以与`reflect.DeepEqual()`函数进行比较:
+
+    ```go
+    var a interface{}
+    var b interface{}
+    
+    a = []int{1}
+    b = []int{1}
+    println(reflect.DeepEqual(a, b))
+    // Output: true
+    
+    a = map[string]string{"A": "B"}
+    b = map[string]string{"A": "B"}
+    println(reflect.DeepEqual(a, b))
+    // Output: true
+    
+    temp := func() {}
+    a = temp
+    b = temp
+    println(reflect.DeepEqual(a, b))
+    // Output: false
+    ```
+
+    此外为了比较`byte slices`，bytes包中有很好的帮助程序函数：`bytes.Equal()`, `bytes.Compare()`, and `bytes.EqualFold()`。 后者用于比较不区分大小写的文本字符串，这比`reflect.DeepEqual()`快得多。
+
+    
+
 - **Slice Sorting**
 
     用到 sort.Sllice()， 底层快排
@@ -34,6 +162,16 @@
     }
     
     ```
+
+
+
+- **Slice Copy 与 = 的区别**
+
+    Copy(dst , src ) 拷贝速度比 = 慢 
+
+    Copy(dst  , src )  是值拷贝，= 赋值是引用
+
+    
 
 - **utf8 length**
 
