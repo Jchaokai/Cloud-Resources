@@ -434,9 +434,15 @@
     简要描述golang的GC怎么工作
 
     ```
-    MarkWorker goroutine recursively scan all the objects and colors them into white(inaccessible), gray(pending), black(accessible). But finally they will only be black and white objcts. In compile time, the compiler has already injected a snippet called write barrier to monitor all the modifications from any goroutines to heap memory. When "Stop the world" is performed, scheduler hibernates all threads and preempt all goroutines. Garbage collector will recycle all the inaccessible objects so heap or central can reuse. If the whole span of memory are unused, it can be freed to OS. Perform "Start the world" to wake cpu cores and threads, and resume the execution of goroutines.
+    MarkWorker goroutine recursively scan all the objects and colors them into white(inaccessible), gray(pending), black(accessible). But finally they will only be black and white objcts. 
+    In compile time, the compiler has already injected a snippet called write barrier to monitor all the modifications from any goroutines to heap memory. 
+    When "Stop the world" is performed, scheduler hibernates all threads and preempt all goroutines. Garbage collector will recycle all the inaccessible objects so heap or central can reuse. If the whole span of memory are unused, it can be freed to OS.
+    Perform "Start the world" to wake cpu cores and threads, and resume the execution of goroutines.
     翻译:
-    MarkWorker goroutine递归扫描所有对象，并将它们着色为白色（不可访问），灰色（待处理），黑色（可访问）。 但最终它们只会是黑白对象。 在编译时，编译器已经注入了一个称为写屏障的代码片段，以监视从任何goroutine到堆内存的所有修改。 当执行“ Stop the world”时，调度程序将休眠所有线程并抢占所有goroutine。 垃圾收集器将回收所有无法访问的对象，以便堆或中央对象可以重用。 如果未使用全部内存，则可以将其释放给OS。 执行“Start the world”以唤醒CPU内核和线程，并继续执行goroutine。
+    MarkWorker goroutine递归扫描所有对象，并将它们着色为白色（不可访问），灰色（待处理），黑色（可访问）。 但最终它们只会是黑白对象。 
+    在编译时，编译器已经注入了一个称为写屏障的代码片段，以监视从任何goroutine到堆内存的所有修改。
+    当执行“ Stop the world”时，调度程序将休眠所有线程并抢占所有goroutine。 垃圾收集器将回收所有无法访问的对象，以便堆或中央对象可以重用。 如果未使用全部内存，则可以将其释放给OS。 
+    执行“Start the world”以唤醒CPU内核和线程，并继续执行goroutine。
     ```
 
     
@@ -512,3 +518,58 @@
     runtime.Goexit：立即停止执行goroutine并调用defer，但这不会引起panic。
                                 
     ```
+
+
+
+- **用golang实现 stack 、queue**，几种方式
+
+    1. slice可以实现
+
+    2. container/list
+
+    3. buffered channel
+
+    对于slice 与 list，gogroup回应 “Always use a slice.”, [Dave Cheney](https://groups.google.com/forum/#!msg/golang-nuts/mPKCoYNwsoU/tLefhE7tQjMJ) 
+
+    buffered channel 永远不是一个好主意
+
+    
+
+- **怎么按固定的顺序显示hash值**
+
+    借助额外的空间，sort keys，借助排序好的keys遍历输出map
+
+    ```go
+    fruits := map[string]int{
+    	"oranges": 100,
+    	"apples":  200,
+    	"bananas": 300,
+    }
+    
+    // Put the keys in a slice and sort it.
+    var keys []string
+    for key := range fruits {
+    	keys = append(keys, key)
+    }
+    sort.Strings(keys)
+    
+    // Display keys according to the sorted slice.
+    for _, key := range keys {
+    	fmt.Printf("%s:%v\n", key, fruits[key])
+    }
+    // Output:
+    // apples:200
+    // bananas:300
+    // oranges:100
+    ```
+
+    
+
+- **slice的声明，哪个更可取**
+
+    var a []int
+
+    a := []int{}
+
+    如果不使用slice，则第一个声明不分配内存，因此首选第一种声明方法。
+
