@@ -6,7 +6,7 @@ Go-Mirco(库)、Mirco(基于Go-Mirco开发的运行时工具集)
 
 1. **API**
 
-    ![Mirco-API示意图](https://github.com/Jchaokai/Cloud-Resources/blob/master/images/Mirco-API.JPG)
+    ![Mirco-API示意图](https://github.com/Jchaokai/Cloud-Resources/blob/master/images/Mirco/Mirco-API.JPG)
 
     将一些http请求 基于命名空间ns 路由到内部的对应的API处理，也可以将消息`event`，广播到消息订阅者，此图只示意两种
 
@@ -28,13 +28,13 @@ Go-Mirco(库)、Mirco(基于Go-Mirco开发的运行时工具集)
 
     两个服务，反向代理 与 管理控制台（可以管理查看服务的健康状况）
 
-    ![Mirco-web示意图](https://github.com/Jchaokai/Cloud-Resources/blob/master/images/Mirco-web.JPG)
+    ![Mirco-web示意图](https://github.com/Jchaokai/Cloud-Resources/blob/master/images/Mirco/Mirco-web.JPG)
 
     
 
 3. **Proxy**
 
-    ![Mirco-proxy示意图](https://github.com/Jchaokai/Cloud-Resources/blob/master/images/Mirco-proxy.JPG)
+    ![Mirco-proxy示意图](https://github.com/Jchaokai/Cloud-Resources/blob/master/images/Mirco/Mirco-proxy.JPG)
 
     
 
@@ -48,7 +48,7 @@ Go-Mirco(库)、Mirco(基于Go-Mirco开发的运行时工具集)
 
 5. **Bot**
 
-    ![Mirco-bot示意图](https://github.com/Jchaokai/Cloud-Resources/blob/master/images/Mirco-bot.JPG)
+    ![Mirco-bot示意图](https://github.com/Jchaokai/Cloud-Resources/blob/master/images/Mirco/Mirco-bot.JPG)
 
     Go-Mirco V2 可能改名位  agent
 
@@ -56,23 +56,23 @@ Go-Mirco(库)、Mirco(基于Go-Mirco开发的运行时工具集)
 
 ### Go - Mirco framework
 
-![Go - Mirco framework示意图](https://github.com/Jchaokai/Cloud-Resources/blob/master/images/Go-Mirco framework.JPG)
+![Go-Mircoframework示意图](https://github.com/Jchaokai/Cloud-Resources/blob/master/images/Mirco/Go-Mirco-framework.JPG)
 
 基础组件调用关系图：
 
-![](https://github.com/Jchaokai/Cloud-Resources/blob/master/images/Go-Mirco基础组件.JPG)
+![基础组件调用关系图](https://github.com/Jchaokai/Cloud-Resources/blob/master/images/Mirco/Go-Mirco%E5%9F%BA%E7%A1%80%E7%BB%84%E4%BB%B6%E8%B0%83%E7%94%A8.JPG)
 
 其他组件 ：
 
-![](https://github.com/Jchaokai/Cloud-Resources/blob/master/images/Go-Mirco其他组件.JPG)
+![其他组件](https://github.com/Jchaokai/Cloud-Resources/blob/master/images/Mirco/Go-Mirco%E5%85%B6%E4%BB%96%E7%BB%84%E4%BB%B6.JPG)
 
 - **Broker 异步消息组件**
 
-    ![](https://github.com/Jchaokai/Cloud-Resources/blob/master/images/Go-Mirco broker.JPG)
+    ![Broker](https://github.com/Jchaokai/Cloud-Resources/blob/master/images/Mirco/Go-Mirco-broker.JPG)
 
 - **Register 注册组件**
 
-    ![](https://github.com/Jchaokai/Cloud-Resources/blob/master/images/Go-Mirco registry.JPG)
+    ![Registry](https://github.com/Jchaokai/Cloud-Resources/blob/master/images/Mirco/Go-Mirco-registry.JPG)
 
     支持的注册类型：
 
@@ -82,11 +82,11 @@ Go-Mirco(库)、Mirco(基于Go-Mirco开发的运行时工具集)
 
 - **Selector 选择器组件**
 
-    ![](https://github.com/Jchaokai/Cloud-Resources/blob/master/images/Go-Mirco selector.JPG)
+    ![Selector](https://github.com/Jchaokai/Cloud-Resources/blob/master/images/Mirco/Go-Mirco-selector.JPG)
 
 - **transport 同步通信组件**
 
-    ![](https://github.com/Jchaokai/Cloud-Resources/blob/master/images/Go-Mirco transport.JPG)
+    ![transport](https://github.com/Jchaokai/Cloud-Resources/blob/master/images/Mirco/Go-Mirco-transport.JPG)
 
     **transport 分类：**
 
@@ -101,11 +101,11 @@ Go-Mirco(库)、Mirco(基于Go-Mirco开发的运行时工具集)
 
 插件化的原理：
 
-![](https://github.com/Jchaokai/Cloud-Resources/blob/master/images/Go-Mirco 插件化原理.JPG)
+![插件化的原理](https://github.com/Jchaokai/Cloud-Resources/blob/master/images/Mirco/Go-Mirco插件化原理.JPG)
 
 插件化代码演示：
 
-![](https://github.com/Jchaokai/Cloud-Resources/blob/master/images/Go-Mirco 插件化代码演示.JPG)
+![插件化代码演示](https://github.com/Jchaokai/Cloud-Resources/blob/master/images/Mirco/Go-Mirco插件化代码演示.JPG)
 
 
 

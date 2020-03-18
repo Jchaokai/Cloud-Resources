@@ -2,7 +2,7 @@
 
 DP问题思路图：
 
-![DP问题思路图](https://github.com/Jchaokai/Cloud-Resources/blob/master/images/DP%E9%97%AE%E9%A2%98%E6%80%9D%E8%B7%AF.JPG)
+![DP问题思路图](https://github.com/Jchaokai/Cloud-Resources/blob/master/images/DP/DP%E9%97%AE%E9%A2%98%E6%80%9D%E8%B7%AF.JPG)
 
 **一般分为:&emsp; `线性DP`&emsp; `区间DP`&emsp; `背包问题 `**
 
@@ -12,7 +12,7 @@ DP问题思路图：
 
 -  **[LeetCode 53](https://leetcode-cn.com/problems/maximum-subarray/)**
 
-<img src="https://github.com/Jchaokai/Cloud-Resources/blob/master/images/DP-LeetCode-53.JPG" style="zoom:80%;" />
+<img src="https://github.com/Jchaokai/Cloud-Resources/blob/master/images/DP/DP-LeetCode-53.JPG" style="zoom:80%;" />
 
 ```go
 const (
@@ -39,7 +39,7 @@ func max(a int,b int) int{
 
 - **[leetcode 120](https://leetcode-cn.com/problems/maximum-subarray/)** 
 
-![image](https://github.com/Jchaokai/Cloud-Resources/blob/master/images/DP-LeetCode-120.JPG) 
+![image](https://github.com/Jchaokai/Cloud-Resources/blob/master/images/DP/DP-LeetCode-120.JPG) 
 
 ```go
 const (
@@ -142,7 +142,7 @@ func uniquePathsWithObstacles(nums [][]int) int {
 
 - **[LeetCode 91](https://leetcode-cn.com/problems/decode-ways/)**
 
-![image](https://github.com/Jchaokai/Cloud-Resources/blob/master/images/DP-LeetCode-91.JPG)
+![image](https://github.com/Jchaokai/Cloud-Resources/blob/master/images/DP/DP-LeetCode-91.JPG)
 
 ```go
 func numDecodings(s string) int {
@@ -165,7 +165,7 @@ func numDecodings(s string) int {
 
 - **[LeetCode 198](https://leetcode-cn.com/problems/house-robber/)**
 
-![image](https://github.com/Jchaokai/Cloud-Resources/blob/master/images/DP-LeetCode-198.JPG)
+![image](https://github.com/Jchaokai/Cloud-Resources/blob/master/images/DP/DP-LeetCode-198.JPG)
 
 ```go
 func rob(nums []int) int {
