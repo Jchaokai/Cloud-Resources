@@ -60,11 +60,11 @@ Go-Mirco(库)、Mirco(基于Go-Mirco开发的运行时工具集)
 
 基础组件调用关系图：
 
-![基础组件调用关系图](https://github.com/Jchaokai/Cloud-Resources/blob/master/images/Mirco/Go-Mirco基础组件.JPG)
+![基础组件调用关系图](https://github.com/Jchaokai/Cloud-Resources/blob/master/images/Mirco/Go-Mirco%E5%85%B6%E4%BB%96%E7%BB%84%E4%BB%B6.JPG)
 
 其他组件 ：
 
-![其他组件](https://github.com/Jchaokai/Cloud-Resources/blob/master/images/Mirco/Go-Mirco其他组件.JPG)
+![其他组件](https://github.com/Jchaokai/Cloud-Resources/blob/master/images/Mirco/Go-Mirco%E5%85%B6%E4%BB%96%E7%BB%84%E4%BB%B6.JPG)
 
 - **Broker 异步消息组件**
 
@@ -101,13 +101,15 @@ Go-Mirco(库)、Mirco(基于Go-Mirco开发的运行时工具集)
 
 插件化的原理：
 
-![插件化的原理](https://github.com/Jchaokai/Cloud-Resources/blob/master/images/Mirco/Go-Mirco插件化原理.JPG)
+![插件化的原理](https://github.com/Jchaokai/Cloud-Resources/blob/master/images/Mirco/Go-Mirco%E6%8F%92%E4%BB%B6%E5%8C%96%E5%8E%9F%E7%90%86.JPG)
 
 插件化代码演示：
 
-![插件化代码演示](https://github.com/Jchaokai/Cloud-Resources/blob/master/images/Mirco/Go-Mirco插件化代码演示.JPG)
+![插件化代码演示](https://github.com/Jchaokai/Cloud-Resources/blob/master/images/Mirco/Go-Mirco%E6%8F%92%E4%BB%B6%E5%8C%96%E4%BB%A3%E7%A0%81%E6%BC%94%E7%A4%BA.JPG)
 
 
+
+------
 
 
 
