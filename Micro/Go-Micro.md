@@ -2,27 +2,41 @@
 
 Go-Mirco(库)、Mirco(基于Go-Mirco开发的运行时工具集)
 
+
+
 ### Mirco工具集
 
-1. **API**
+1. **API Gateway**
+
+    参考了[ API网关模式 ](http://microservices.io/patterns/apigateway.html)为服务提供了一个单一的公共入口。通过服务发现，Micro API以http方式，将请求动态路由到具体的后台服务接口。我们以下简称**API**
 
     ![Mirco-API示意图](https://github.com/Jchaokai/Cloud-Resources/blob/master/images/Mirco/Mirco-API.JPG)
 
     将一些http请求 基于命名空间ns 路由到内部的对应的API处理，也可以将消息`event`，广播到消息订阅者，此图只示意两种
 
-    **Mirco-API有五种类型：**
+    **API Gateway  Handlers  (Handler负责持有并管理HTTP请求路由)：**
 
-    - API&emsp;&emsp;将http请求路由到对应API接口
+    - API Handler&emsp;&emsp;将http请求路由到对应API接口
+    - RPC Handler&emsp;&emsp;将http请求路由到RPC服务
+    - event Handler&emsp;&emsp;将http请求广播到订阅者
+    - proxy Handler&emsp;&emsp;反向代理
+    - web Handler&emsp;&emsp;支持websocket的反响代理
 
-    - RPC&emsp;&emsp;将http请求路由到RPC服务
+    通过[`/rpc`](https://micro.mu/docs/cn/api.html#rpc-endpoint)入口可以绕开handler处理器。
 
-    - event&emsp;&emsp;将http请求广播到订阅者
+    目前版本（V1）无法支持多个handler并存运行，也即同时只能使用一个handler。
 
-    - proxy&emsp;&emsp;反向代理
+    **API Gateway Resolver (解析器，Micro使用命名空间与HTTP请求路径来动态路由到具体的服务)**
 
-    - web&emsp;&emsp;支持websocket的反响代理
+    - RPC Resolver
+
+    - Proxy Resolver
 
         
+
+    [API Gateway  ## 具体见官网 ##](https://micro.mu/docs/cn/api.html)
+
+    
 
 2. **Web**
 
@@ -116,3 +130,6 @@ Go-Mirco(库)、Mirco(基于Go-Mirco开发的运行时工具集)
 ### References
 
 1. [Github: micro-in-cn](https://github.com/micro-in-cn)
+2. [Micro 文档](https://micro.mu/docs/cn/index.html)
+3. [microservices.io](https://microservices.io/)
+
