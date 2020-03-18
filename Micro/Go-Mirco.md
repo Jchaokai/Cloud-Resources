@@ -60,11 +60,11 @@ Go-Mirco(库)、Mirco(基于Go-Mirco开发的运行时工具集)
 
 基础组件调用关系图：
 
-![基础组件调用关系图](https://github.com/Jchaokai/Cloud-Resources/blob/master/images/Mirco/Go-Mirco%E5%9F%BA%E7%A1%80%E7%BB%84%E4%BB%B6%E8%B0%83%E7%94%A8.JPG)
+![基础组件调用关系图](https://github.com/Jchaokai/Cloud-Resources/blob/master/images/Mirco/Go-Mirco基础组件.JPG)
 
 其他组件 ：
 
-![其他组件](https://github.com/Jchaokai/Cloud-Resources/blob/master/images/Mirco/Go-Mirco%E5%85%B6%E4%BB%96%E7%BB%84%E4%BB%B6.JPG)
+![其他组件](https://github.com/Jchaokai/Cloud-Resources/blob/master/images/Mirco/Go-Mirco其他组件.JPG)
 
 - **Broker 异步消息组件**
 
