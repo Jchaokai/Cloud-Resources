@@ -54,6 +54,61 @@ Go-Mirco(库)、Mirco(基于Go-Mirco开发的运行时工具集)
 
 
 
+### Go - Mirco framework
+
+![Go - Mirco framework示意图](https://github.com/Jchaokai/Cloud-Resources/blob/master/images/Go-Mirco framework.JPG)
+
+基础组件调用关系图：
+
+![](https://github.com/Jchaokai/Cloud-Resources/blob/master/images/Go-Mirco基础组件.JPG)
+
+其他组件 ：
+
+![](https://github.com/Jchaokai/Cloud-Resources/blob/master/images/Go-Mirco其他组件.JPG)
+
+- **Broker 异步消息组件**
+
+    ![](https://github.com/Jchaokai/Cloud-Resources/blob/master/images/Go-Mirco broker.JPG)
+
+- **Register 注册组件**
+
+    ![](https://github.com/Jchaokai/Cloud-Resources/blob/master/images/Go-Mirco registry.JPG)
+
+    支持的注册类型：
+
+    1. 基于通用注册中心，如Etcd、Consul、ZooKeeper、Eureka
+    2. 基于网络广播，如mDNS、Gossip
+    3. 基于消息中间件，如NATs
+
+- **Selector 选择器组件**
+
+    ![](https://github.com/Jchaokai/Cloud-Resources/blob/master/images/Go-Mirco selector.JPG)
+
+- **transport 同步通信组件**
+
+    ![](https://github.com/Jchaokai/Cloud-Resources/blob/master/images/Go-Mirco transport.JPG)
+
+    **transport 分类：**
+
+    1. HTTP ：&emsp;httpTransport、grpcTransport
+    2. TCP ：&emsp;tcpTransport
+    3. UDP ：&emsp;udpTransport、quicTransport
+    4. MQ ：&emsp;rabbitMQTransport、natsTransport
+
+
+
+### 关于 Go-Mirco 的插件化
+
+插件化的原理：
+
+![](https://github.com/Jchaokai/Cloud-Resources/blob/master/images/Go-Mirco 插件化原理.JPG)
+
+插件化代码演示：
+
+![](https://github.com/Jchaokai/Cloud-Resources/blob/master/images/Go-Mirco 插件化代码演示.JPG)
+
+
+
 
 
 ### References
