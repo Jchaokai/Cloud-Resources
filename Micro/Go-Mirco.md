@@ -48,7 +48,7 @@ Go-Mirco(库)、Mirco(基于Go-Mirco开发的运行时工具集)
 
 5. **Bot**
 
-    ![Mirco-bot示意图](https://github.com/Jchaokai/Cloud-Resources/blob/master/images/Mirco-proxy.JPG)
+    ![Mirco-bot示意图](https://github.com/Jchaokai/Cloud-Resources/blob/master/images/Mirco-bot.JPG)
 
     Go-Mirco V2 可能改名位  agent
 
@@ -58,4 +58,4 @@ Go-Mirco(库)、Mirco(基于Go-Mirco开发的运行时工具集)
 
 ### References
 
-1. [Github: https://github.com/micro-in-cn](Github: https://github.com/micro-in-cn)
+1. [Github: micro-in-cn](https://github.com/micro-in-cn)
