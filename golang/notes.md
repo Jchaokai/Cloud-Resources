@@ -2,6 +2,8 @@
 
 - golang中 ` >>`  `<<` 优先级比 `+ - `高
 
+- golang中 for的常见错误 [https://github.com/golang/go/wiki/CommonMistakes](https://github.com/golang/go/wiki/CommonMistakes)
+
 - **nil**
 
     1. Go的文档中说到，nil是预定义的标识符，代表指针、通道、函数、接口、映射或切片的零值,并不是GO 的关键字之一
@@ -343,7 +345,7 @@
 
 - **String Internal**
 
-    将[]byte 转化成string ，不会导致内存复制
+    要求将[]byte 转化成string ，不会导致内存复制
 
     预期输出为“ 143”
 
