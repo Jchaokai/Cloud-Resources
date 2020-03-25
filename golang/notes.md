@@ -66,7 +66,7 @@
         	
         	ch <- struct{}{}
         	
-        	<-ch	//读取已经关闭的channel，会渠道对应type的零值，这里是空的struct{}
+        	<-ch	//读取已经关闭的channel，会取道对应type的零值，这里是空的struct{}
         	
         	println(“roger")
         	// Output:
