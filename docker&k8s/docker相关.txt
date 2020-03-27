@@ -1,0 +1,90 @@
+镜像相关命令
+	docker images
+	docker images -q	//查看所有镜像ID
+	docker rmi `docker images -q` //删除所有镜像
+	docker search [name]
+	docker pull [name:version]
+	docker commit  -m "修改信息" -p(制作镜像时暂停容器的运行) mynginx:0.1  新的镜像信息
+	// 容器中挂载加入的文件不会写入到新的镜像里
+	docker save -o 压缩文件名.tar  mynginx:0.1
+	docker load -i 压缩文件
+
+容器相关命令
+	docker ps 
+	docker ps -a 
+	docker ps -aq	//查看所有容器的ID
+	docker run -d(后台运行) 	--name mynginx 	-p 80:80 	nginx:latest
+	docker run -it(可以终端,退出后，容器关闭Exited) 	--name mynginx 	-p 80:80 	nginx:latest 	/bin/bash
+	docker run -d -rm(关闭后删除容器) 	--name mynginx 	-p 80:80 	nginx:latest 	/bin/bash
+	
+	docker exec -it mynginx /bin/bash
+
+	docker stop mynginx
+	docker start mynginx
+	docker kill mynginx
+	docker rm mynginx
+	docker rm `docker ps -aq`	//删除所有容器
+
+	docker inspect mynginx
+	docker inspect {{.XXXX.XX}} mynginx
+
+容器的数据卷
+	数据卷是宿主机的一个文件或目录
+	当容器目录和数据卷绑定后，对方的修改会立即同步
+	一个数据卷可以被多个容器 link
+	一个容器可以link 多个数据卷
+
+	配置数据卷：
+		docker run -v [宿主机目录:容器目录的绝对路径] -v [宿主机目录:容器目录的绝对路径]  . . .
+
+
+数据卷容器
+	多个容器惊醒数据交换：
+		1. 多个容器挂载到 宿主机的统一目录下，实现数据同步
+		2. 数据卷容器
+
+		c1 ------
+				|
+				c3------> 数据卷 		c3容器就是数据卷容器
+				|
+		c2 ------
+
+
+		docker run --name c3 -d 	-v /数据卷目录  		mynginx 
+		docker run --name c1 -d 	--volumn-from 	c3 	mynginx 
+		docker run --name c2 -d 	--volumn-from 	c3 	mynginx 
+
+
+Dockerfile
+	样例:
+		自定义centod7镜像，要求：
+		1.默认登陆路径位 /usr
+		2.可以使用vim
+
+		FORM centos:latest
+		RUN yum install -y vim
+		WORKDIR /usr
+		CMD /bin/bash
+
+
+
+搭建docker私有仓库
+	docker pull registry
+	docker run --name registry -d -p 5000:5000 registry:latest
+
+查看私有仓库
+	http://私有仓库服务器ip:5000/v2/_catalog
+
+上传镜像
+	首先将私有仓库设置为  "信任私有仓库地址"
+	1. vi /etc/docker/daemon.json
+	2. 添加key  "insecure-registries":["私有仓库服务器ip:5000"]
+	3. 重启docker服务
+		systmctl restart docker
+
+	标记为私有仓库镜像
+	docker tag  centos:latest   私有仓库服务器ip:5000/centos:latest
+	docker push  私有仓库服务器ip:5000/centos:latest
+
+拉取镜像	
+docker pull  私有仓库服务器ip:5000/centos:latest
