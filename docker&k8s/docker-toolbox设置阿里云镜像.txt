@@ -1,0 +1,6 @@
+docker-machine ssh default
+
+
+sudo sed -i "s|EXTRA_ARGS='|EXTRA_ARGS='--registry-mirror=https://wwhalafm.mirror.aliyuncs.com |g" /var/lib/boot2docker/profile
+
+docker-machine restart default

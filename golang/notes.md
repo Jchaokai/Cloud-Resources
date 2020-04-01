@@ -144,13 +144,13 @@
     // Output: false
     ```
 
-    此外为了比较`byte slices`，bytes包中有很好的帮助程序函数：`bytes.Equal()`, `bytes.Compare()`, and `bytes.EqualFold()`。 后者用于比较不区分大小写的文本字符串，这比`reflect.DeepEqual()`快得多。
+    此外为了比较`[]byte类型的 slice`，bytes包中有很好的帮助程序函数：`bytes.Equal()`, `bytes.Compare()`, and `bytes.EqualFold()`。 后者用于比较不区分大小写的文本字符串，这比`reflect.DeepEqual()`快得多。
 
     
 
 - **Slice Sorting**
 
-    用到 sort.Sllice()， 底层快排
+    用到 sort.Slice()， 底层快排
 
     ```go
     type S struct {

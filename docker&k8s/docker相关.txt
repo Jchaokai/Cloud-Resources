@@ -14,7 +14,7 @@
 	docker ps -a 
 	docker ps -aq	//查看所有容器的ID
 	docker run -d(后台运行) 	--name mynginx 	-p 80:80 	nginx:latest
-	docker run -it(可以终端,退出后，容器关闭Exited) 	--name mynginx 	-p 80:80 	nginx:latest 	/bin/bash
+	docker run -it(可以终端,退出后，容器Exited) 	--name mynginx 	-p 80:80 	nginx:latest 	/bin/bash
 	docker run -d -rm(关闭后删除容器) 	--name mynginx 	-p 80:80 	nginx:latest 	/bin/bash
 	
 	docker exec -it mynginx /bin/bash
