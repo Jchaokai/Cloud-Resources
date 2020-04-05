@@ -539,33 +539,49 @@
 
     
 
-- **怎么按固定的顺序显示hash值**
+- **怎么按固定的顺序显示map**
 
-    借助额外的空间，sort keys，借助排序好的keys遍历输出map
+    借助额外的空间，sort keys，借助排序好的keys遍历输出map ,
+
+    <p style="color:red" >---这个方法太他妈过时了   ---这个方法太他妈过时了  ---这个方法太他妈过时了</p>
+
+    详见 ：[ stackoverflow  [sort a map by key or value] ](https://stackoverflow.com/questions/18695346/how-to-sort-a-mapstringint-by-its-values)
+
+    使用go 1.8 sort包 Slice()方法
+
+    ```
+    func Slice(slice interface{}, less func(i, j int) bool)
+    ```
+
+    例: 
 
     ```go
-    fruits := map[string]int{
-    	"oranges": 100,
-    	"apples":  200,
-    	"bananas": 300,
-    }
+    package main
     
-    // Put the keys in a slice and sort it.
-    var keys []string
-    for key := range fruits {
-    	keys = append(keys, key)
-    }
-    sort.Strings(keys)
+    import (
+    	"fmt"
+    	"sort"
+    )
     
-    // Display keys according to the sorted slice.
-    for _, key := range keys {
-    	fmt.Printf("%s:%v\n", key, fruits[key])
+    func main() {
+    	people := []struct {
+    		Name string
+    		Age  int
+    	}{
+    		{"Gopher", 7},
+    		{"Alice", 55},
+    		{"Vera", 24},
+    		{"Bob", 75},
+    	}
+    	sort.Slice(people, func(i, j int) bool { return people[i].Name < people[j].Name })
+    	fmt.Println("Sort By name:", people)
+    
+    	sort.Slice(people, func(i, j int) bool { return people[i].Age < people[j].Age })
+    	fmt.Println("Sort By age:", people)
     }
-    // Output:
-    // apples:200
-    // bananas:300
-    // oranges:100
     ```
+
+    
 
     
 
