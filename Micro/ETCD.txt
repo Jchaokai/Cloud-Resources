@@ -1,16 +1,16 @@
 ETCD安装
-	命令安装
-		ETCD_VER=v3.4.5
-		# choose either URL
-		GOOGLE_URL=https://storage.googleapis.com/etcd
-		GITHUB_URL=https://github.com/etcd-io/etcd/releases/download
-		DOWNLOAD_URL=${GOOGLE_URL}
-
-		rm -f /tmp/etcd-${ETCD_VER}-linux-amd64.tar.gz
-		rm -rf /tmp/etcd-download-test && mkdir -p /tmp/etcd-download-test
-
-		curl -L ${DOWNLOAD_URL}/${ETCD_VER}/etcd-${ETCD_VER}-linux-amd64.tar.gz -o /tmp/etcd-${ETCD_VER}-linux-amd64.tar.gz
-		tar xzvf /tmp/etcd-${ETCD_VER}-linux-amd64.tar.gz -C /tmp/etcd-download-test --strip-components=1
-		rm -f /tmp/etcd-${ETCD_VER}-linux-amd64.tar.gz
 	压缩包安装
 		github下载解压
+	命令安装
+		没使用过，根据官方指导来
+
+修改API版本
+	etcdctl -h 就可以看到 api version, 启动日志里也可以看到
+
+	max/linux:
+		export  ETCDCTL_API=3
+	wins
+		set ETCDCTL_API=3
+
+
+	

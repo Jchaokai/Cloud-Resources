@@ -2,7 +2,7 @@
 
 - golang中 ` >>`  `<<` 优先级比 `+ - `高
 
-- golang中 for的常见错误 [https://github.com/golang/go/wiki/CommonMistakes](https://github.com/golang/go/wiki/CommonMistakes)
+- golang中 for loop 的常见错误 [https://github.com/golang/go/wiki/CommonMistakes](https://github.com/golang/go/wiki/CommonMistakes)
 
 - **nil**
 
@@ -543,48 +543,46 @@
 
     借助额外的空间，sort keys，借助排序好的keys遍历输出map ,
 
-    <p style="color:red" >---这个方法太他妈过时了   ---这个方法太他妈过时了  ---这个方法太他妈过时了</p>
+    <p style="color:red;margin-left:40px" >---这个方法太他妈过时了   ---这个方法太他妈过时了  ---这个方法太他妈过时了</p>
 
-    详见 ：[ stackoverflow  [sort a map by key or value] ](https://stackoverflow.com/questions/18695346/how-to-sort-a-mapstringint-by-its-values)
-
+    **详见 ：[ stackoverflow  [sort a map by key or value] ](https://stackoverflow.com/questions/18695346/how-to-sort-a-mapstringint-by-its-values)**
+    
     使用go 1.8 sort包 Slice()方法
-
+    
     ```
-    func Slice(slice interface{}, less func(i, j int) bool)
+        func Slice(slice interface{}, less func(i, j int) bool)
     ```
-
+    
     例: 
-
+    
     ```go
-    package main
-    
-    import (
-    	"fmt"
-    	"sort"
-    )
-    
-    func main() {
-    	people := []struct {
-    		Name string
-    		Age  int
-    	}{
-    		{"Gopher", 7},
-    		{"Alice", 55},
-    		{"Vera", 24},
-    		{"Bob", 75},
-    	}
-    	sort.Slice(people, func(i, j int) bool { return people[i].Name < people[j].Name })
-    	fmt.Println("Sort By name:", people)
-    
-    	sort.Slice(people, func(i, j int) bool { return people[i].Age < people[j].Age })
-    	fmt.Println("Sort By age:", people)
-    }
+        package main
+        
+        import (
+        	"fmt"
+        	"sort"
+        )
+        
+        func main() {
+        	people := []struct {
+        		Name string
+        		Age  int
+        	}{
+        		{"Gopher", 7},
+        		{"Alice", 55},
+        		{"Vera", 24},
+        		{"Bob", 75},
+        	}
+        	sort.Slice(people, func(i, j int) bool { return people[i].Name < people[j].Name })
+        	fmt.Println("Sort By name:", people)
+        
+        	sort.Slice(people, func(i, j int) bool { return people[i].Age < people[j].Age })
+        	fmt.Println("Sort By age:", people)
+        }
     ```
-
     
-
+       
     
-
 - **slice的声明，哪个更可取**
 
     var a []int
@@ -592,4 +590,78 @@
     a := []int{}
 
     如果不使用slice，则第一个声明不分配内存，因此首选第一种声明方法。
+
+    
+
+- **Map原地修改value 错误**
+
+    在Go语言中，Map中的值是不可以原地修改的，如：
+
+    ```go
+    package main
+    
+    type S struct{
+    	name string
+    }
+    
+    func main(){
+    	m := map[string]S{
+    		"x" : S{"one"},
+    	}
+    	m["x"].name = "two"
+    }
+    ```
+
+    上面的代码会编译失败，因为在go中 map中的赋值属于值copy，就是在赋值的时候是把S的完全复制了一份，复制给了map。而在go语言中，是不允许将其修改的。
+     **但是如果map的value为int，是可以修改的，因为修改map中的int属于赋值的操作。**
+
+    ```go
+    package main
+    
+    type S struct {
+        Id int
+    }
+    
+    func main() {
+        s1 := map[string]S{
+            "x" : S{22},
+        }
+        s1["x"] = 2
+        s1["x"] = 3
+    }
+    ```
+
+    那么，如何在go语言中原地修改map中的value呢？ 答案是：**传指针！**
+
+    ```go
+    package main
+    
+    type S struct{
+    	name string
+    }
+    
+    func main(){
+    	m := map[string]*S{
+    		"x" : &S{"one"},
+    	}
+    	m["x"].name = "two"
+    }
+    ```
+
+    在结构体比较大的时候，用指针效率会更好，因为不需要值copy
+     当然，如果map中的value为 *int指针类型，那么**在赋值时不可以用&123，因为int为常量，不占内存，没有内存地址**
+
+    ```go
+    package main
+    
+    type Student struct {
+        Id int
+    }
+    
+    func main() {
+        s2 := make(map[string]*int)
+        n := 1
+        s2["chenchao"] = &n 
+    }
+    ```
 
