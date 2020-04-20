@@ -477,7 +477,7 @@
     For small objects(<=32KB), go runtime starts with cache firstly, then central, and finally heap.
     For big objects(>32KB), directly from heap.
     - - - 
-    对于较小的对象（<= 32KB），运行时首先从缓存开始，然后是中央，最后是堆。 
+    对于较小的对象（<= 32KB），runtime首先从缓存开始，然后是中央，最后是堆。 
     对于大对象（> 32KB），直接从堆中分配。
                                 
     ```
@@ -544,8 +544,7 @@
     借助额外的空间，sort keys，借助排序好的keys遍历输出map ,
 
     <p style="color:red;margin-left:40px" >---这个方法太他妈过时了   ---这个方法太他妈过时了  ---这个方法太他妈过时了</p>
-
-    **详见 ：[ stackoverflow  [sort a map by key or value] ](https://stackoverflow.com/questions/18695346/how-to-sort-a-mapstringint-by-its-values)**
+**详见 ：[ stackoverflow  [sort a map by key or value] ](https://stackoverflow.com/questions/18695346/how-to-sort-a-mapstringint-by-its-values)**
     
     使用go 1.8 sort包 Slice()方法
     
