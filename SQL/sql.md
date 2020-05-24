@@ -1,71 +1,36 @@
-### sql基础
+## sql
 
-#### 修改
-```sql
-#添加列
-alter table mytable
-add col1 char(20);
+- 一条SQL查询语句是如何执行的 ?一条SQL更新语句是如何执行的
 
-#删除列
-alter tablemytable
-drop column col1;
-```
-#### 插入
-```sql
-#普通插入
-insert into mytable(col1,col2)
-values(val1,val2);
+    from -> on -> join -> where -> group by -> having -> select -> distinct -> order by -> limit
 
-#插入检索出来的数据
-insert into mytable(col1,col2)
-select col1,col2
-from mytable2;
+    
 
-#将一个表插入到一个新表
-create table newtable as
-select * from mytables;
-```
+- 事务隔离级别是什么，怎么选择的，为什么
 
-#### 排序
+    |         事务隔离级别         | 脏读 | 不可重复读 | 幻读 |
+    | :--------------------------: | :--: | :--------: | :--: |
+    | 读未提交（read-uncommitted） |  是  |     是     |  是  |
+    | 不可重复读（read-committed） |  否  |     是     |  是  |
+    | 可重复读（repeatable-read）  |  否  |     否     |  是  |
+    |    串行化（serializable）    |  否  |     否     |  否  |
 
-```sql
-ASC ：升序（默认）
-DESC ：降序
-可以按多个列进行排序，并且为每个列指定不同的排序方式：
 
-SELECT *
-FROM mytable
-ORDER BY col1 DESC, col2 ASC;
-```
-### 通配符
-```sql
-/*通配符也是用在过滤语句中，但它只能用于文本字段。 
 
- % 匹配(>=0)个任意字符；
- _ 匹配(==1)个任意字符；
- [ ] 可以匹配集合内的字符，例如 [ab] 将匹配字符 a 或者 b。用脱字符 ^ 可以对其进行否定，也就是不匹配集合内的字符。
+- 说说你了解的索引
 
-使用 Like 来进行通配符匹配。*/
+- 全局锁，表锁，行锁，如何减小行锁堆性能的影响
 
-SELECT *
-FROM mytable
-WHERE col LIKE '[^AB]%'; -- 不以 A 和 B 开头的任意文本
-#不要滥用通配符，通配符位于开头处匹配会非常慢。
-```
-#### CONCAT()
-```sql
-/*CONCAT() 用于连接多个字段。(如果有任何一个参数为null，则返回值为null。)
+- 幻读是什么，幻读有什么问题
 
-许多数据库会使用空格把一个值填充为列宽，因此连接的结果会出现不必要的空格，
-使用 TRIM() 可以去除首尾空格。
-*/
-
-SELECT CONCAT(TRIM(col1), '(', TRIM(col2), ')') AS concat_col
-FROM mytable;
-```
-### 试图
-
-### 存储过程
-
-### 游标
-
+- mysql是怎么保证数据不丢的
+- mysql是怎么保证主备一致的
+- mysql是怎么保证高可用
+- 主库出问题了，从库怎么办
+- 备库延迟好几十分钟，从几个方面排查问题
+- 读写分离有哪些坑
+- join语句怎么优化
+- 分布式事务：如何保证多个系统间的数据是一致的？
+- 怎么避免写出慢sql
+- mysql如何应对高并发
+- 订单数据越来越多，数据库越来越慢怎么办？

@@ -13,7 +13,9 @@
 
 - - -
 ### 安装gRPC
+
 **1. 安装gRPC**
+
 ```shell
 go get -u google.golang.org/grpc
 ```
@@ -73,6 +75,7 @@ protoc -I helloworld/ helloworld/pb/helloworld.proto --go_out=plugins=grpc:hello
 在`gRPC_demo/helloworld/pb`目录下会生成`helloworld.pb.go`文件。
 
 **2. 编写server端 golang代码**
+
 ```go
 package main
 
@@ -158,11 +161,22 @@ go build
 $ ./client 
 Greeting: Hello dasdsa!
 ```
-**4. gRPC跨语言调用**
 
-**5. 生成Python代码**
 
-**6. 编写Pyton版 client**
+### grpc提供REST API
+
+使用grpc-gateway插件
+
+下载安装
+
+
+
+```shell
+protoc --grpc-gateway_out=logtostderr=true:../dest/dir  your.proto
+```
+
+
+
 
 
 

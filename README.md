@@ -8,4 +8,5 @@
 - :open_file_folder:微服务
 - :open_file_folder:数据库
 - :open_file_folder:Web
+- :open_file_folder:分布式
 

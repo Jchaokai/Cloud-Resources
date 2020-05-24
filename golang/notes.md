@@ -20,7 +20,7 @@
 
 
 
-- **空结构体  Empty structs** 
+- **空结构体  Empty structs**
 
     有什么用 ？
 
@@ -285,7 +285,7 @@
     
     func init() {
     	flag.StringVar(&ip,"ip","0.0.0.0","ip address")
-            flag.IntVar(&port,"port",8000,"port number")
+        flag.IntVar(&port,"port",8000,"port number")
     }
     
     func main() {
@@ -542,6 +542,10 @@
 - **怎么按固定的顺序显示map**
 
     借助额外的空间，sort keys，借助排序好的keys遍历输出map ,
+
+- **slice 的排序**
+
+    自定义结构体，实现 len,less,swap三个方法
 
     <p style="color:red;margin-left:40px" >---这个方法太他妈过时了   ---这个方法太他妈过时了  ---这个方法太他妈过时了</p>
 **详见 ：[ stackoverflow  [sort a map by key or value] ](https://stackoverflow.com/questions/18695346/how-to-sort-a-mapstringint-by-its-values)**
