@@ -19,10 +19,10 @@ type Context interface {
     // 当context 取消or超时，此channel也会关闭
     Done() <-chan struct{}
 
-    // Err()表明/指出 为什么这个context被取消 ( 在Done()后channel取消 )
+    // Err指示为什么 Done channel关闭后, context被cancel。
     Err() error
 
-    // 返回context取消的时间
+    // 返回context取消的时间,(如果有的话)
     Deadline() (deadline time.Time, ok bool)
 
     // 返回与 key有关的值，没有返回nil
@@ -42,13 +42,66 @@ Deadline方法允许函数确定是否他们应该全力开始工作。如果剩
 
 #### Derived contexts （派生的context）
 
+context包提供了从现有上下文 派生`新的 Context`值的功能。这些值形成一棵树：取消`该context`时，从`该context`派生的所有`新的context`也会被取消。
+
+`Background`是 `任何context`树的根；它永远不会被取消：
+
+```
+// Background returns an empty Context. It is never canceled, has no deadline,
+// and has no values. Background is typically used in main, init, and tests,
+// and as the top-level Context for incoming requests.
+func Background() Context
+```
+
+`WithCancel`和`WithTimeout`返回派生的Context值，该值可以比`父Context`更早取消。当请求处理完成后，与请求关联的`context`通常被取消。 使用多个副本时，`WithCancel`对于取消冗余请求也很有用。`WithTimeout`可用于设置对后端服务器的请求的截止日期：
+
+```
+// 当parent.Done关闭 或 cancel函数被调用, ctx.Done 也会被关闭
+func WithCancel(parent Context) (ctx Context, cancel CancelFunc)
+
+// A CancelFunc cancels a Context.
+type CancelFunc func()
+
+// 当parent.Done关闭、cancel函数被调用、timeout时间过去, ctx.Done 也会被关闭
+// context的 Deadline是 now + timeout 和 parent's deadline的较早者，(如果有的话)。
+// 如果timer仍在运行，cancelFunc 将释放其资源。
+func WithTimeout(parent Context, timeout time.Duration) (Context, CancelFunc)
+```
+
+`WithValue`提供了一种将请求范围的值与`Context`相关联的方法：
+
+```
+// WithValue返回一个衍生的context，其Value方法为key返回val。
+func WithValue(parent Context, key interface{}, val interface{}) Context
+```
 
 
-正在更新 . . .
+
+查看如何使用上下文包的最佳方法是通过一个有效的示例。
+
+#### Example
+
+我们的示例是一个HTTP服务器，该服务器通过将查询“ golang” 转发到 [Google Web Search API](https://developers.google.com/web-search/docs/) 并呈现结果来处理类似 `/search?q=golang&timeout=1s`的URL。超时参数告诉服务器在该持续时间过去之后取消请求。
+
+该代码分为三个包：
+
+- [server](https://blog.golang.org/context/server/server.go) 为`/search`提供 `main` function 和 handler
+- [userip](https://blog.golang.org/context/userip/userip.go) 提供用于从请求中提取用户IP地址并将其与`context`关联的功能。
+- [google](https://blog.golang.org/context/google/google.go) 提供了`search`功能，用于向Google发送查询。
+
+
+
+到这里，自己可以去[官方博客](https://blog.golang.org/context)看代码了。
+
+
+
+
 
 <br/>
 
 ### References
 
 - [官方博客:  Go Concurrency Patterns: Context](https://blog.golang.org/context)
+
+- [context API](https://golang.org/pkg/context/)
 
