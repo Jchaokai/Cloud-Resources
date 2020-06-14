@@ -2,6 +2,7 @@
 	docker images
 	docker images -q	//查看所有镜像ID
 	docker rmi `docker images -q` //删除所有镜像
+	docker images rm  `docker images -q` //删除所有镜像
 	docker search [name]
 	docker pull [name:version]
 	docker commit  -m "修改信息" -p(制作镜像时暂停容器的运行) mynginx:0.1  新的镜像信息
@@ -39,7 +40,7 @@
 
 
 数据卷容器
-	多个容器惊醒数据交换：
+	多个容器进行数据交换：
 		1. 多个容器挂载到 宿主机的统一目录下，实现数据同步
 		2. 数据卷容器
 
