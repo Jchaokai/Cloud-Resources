@@ -1,6 +1,6 @@
 ###  笔记记录
 
-- golang中 ` >>`  `<<` 优先级比 `+ - `高
+- golang中 `+ - ` 优先级比` >>`  `<<` 高
 
 - golang中 for loop 的常见错误 [https://github.com/golang/go/wiki/CommonMistakes](https://github.com/golang/go/wiki/CommonMistakes)
 
@@ -667,4 +667,27 @@
         s2["chenchao"] = &n 
     }
     ```
+
+- **slice 扩容机制**
+
+  `runtime\slice.go` 下  `func growslice()`
+
+  ```go
+  // cap : 所需的最小容量(原来slice的容量 + append元素的容量)
+  if cap > old.cap *2 {
+  	newCap = cap
+  }else{
+      if old.len < 1024 {
+          newCap = old.cap * 2
+      }else{
+          newCap = old.cap * 1.25
+      }
+  }
+  
+  // newCap 到现在为止只是预估容量
+  // 最后 newCap = 分配的内存大小 / 元素类型对应的size
+  // 分配的内存大小固定：
+  // var class_to_size = [_NumSizeClasses]uint16{0, 8, 16, 32, 48, 64, 80, 96, 112, 128, 144, 160, 176, 192, 208, 224, 240, 256, 288, 320, 352, 384, 416, 448, 480, 512, 576, 640, 704, 768, 896, 1024, 1152, 1280, 1408, 1536, 1792, 2048, 2304, 2688, 3072, 3200, 3456, 4096, 4864, 5376, 6144, 6528, 6784, 6912, 8192, 9472, 9728, 10240, 10880, 12288, 13568, 14336, 16384, 18432, 19072, 20480, 21760, 24576, 27264, 28672, 32768}
+  
+  ```
 
