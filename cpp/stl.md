@@ -248,7 +248,9 @@ class vector{
 
 
 
-## List
+## 序列容器
+
+### List
 
 G2.9 sizeof(...) 4
 
@@ -270,7 +272,7 @@ iterator 必须提供的5种 特性,以供算法使用
 
 iterator traits
 
-## vector
+### vector
 
 三个指针  `start`  `finish` `end_of_storage`
 
@@ -278,7 +280,7 @@ sizeof(vector) = 3*4 = 12;
 
 
 
-## deque
+### deque
 
 看似是连续的空间，但其实是一段段buffer组成，由`map`(“中央控制器”，指向一个vector的指针，存储着各段buffer的位置信息 ) 管理串联起来。
 
@@ -325,16 +327,43 @@ inline size_f  _deque_buf_size(size_t n,size_t sz){
 }
 ```
 
-- n != 0	 buffer_size = n，即由使用者决定 **G2.9允许，最新版不允许自己决定**
+- n != 0	 buffer_size = n，即由使用者决定 
+
+  **G2.9允许指定buffer size，G4.X 不允许自己决定,大小为512/size_**
+
 - n == 0
   - sz( sizeof(value_type) ) < 512，buffer_size = 512 / sz
   - sz >= 512 ，buffer_size = 1
 
 
 
+#### queue
+
+一个deque,封锁一些功能就是一个queue，没有iterator，不允许遍历
+
+<img src="assets\stack.png" style="zoom:80%;" />
+
+#### stack
+
+一个deque,封锁一些功能就是一个stack，没有iteartor，不允许遍历
+
+<img src="assets\queue.png" style="zoom:80%;" />
 
 
 
+## 关联式容器
+
+底层由`RB_tree `  和 `hash_table`支撑
+
+### RB_tree相关
+
+sizeof(RB_tree)  **G2.9 = 12** ，如图下图所示 
+
+<img src="assets\rb_tree.png" style="zoom:70%;" />
+
+**G4.9 = 24**
+
+<img src="assets\rb_tree2.png" style="zoom:70%;" />
 
 
 

@@ -79,7 +79,68 @@ int main() {
 - 新的运算符 `**`  `<>`  `or`  `&|`也不能被创建
 - 
 
-## 为什么 List 不饿能使用 ::sort() 排序？
+## 为什么 List 不能使用 ::sort() 排序？
 
 ::sort()排序时 使用的是 RandomAcessItertor 随机访问迭代器，迭代时可以随机的+?  -? 运算，但是list 是不连续的空间，只能+1 -1来进行迭代，所以只能使用它自带的sort()算法
+
+
+
+## new 关键字
+
+```
+int* b = new int[50]  // 200bytes,只是分配空间
+Entity* e = new Entity(); // new 分配空间，()调用构造函数
+// Entity* e = new(b) Entity(); //new(b),决定内存的位置,在b的分配空间里初始化
+
+delete e;
+delete[] b;
+
+
+```
+
+
+
+## 隐式转换
+
+```
+class Entity{
+public:
+	std::string m_name;
+	int m_age;
+	
+	Entity(const std::string& name) : m_name(name),m_age(-1){}
+	Entity(int age) : m_name("unkown"),m_age(age){}
+}
+
+void printEntity(const Entity& e){
+	//todo
+}
+
+int main(){
+	printEntity(22); // 22隐式调用构造函数
+	//printEntity("aaa") //错误，构造函数的参数类型为std::string,而这里"aaa"是char[4] 
+	printEntity(std::string("aaa"));
+	printEntity(Entity("aaa"));
+	
+    Entity a("aaa");
+    Entity b(22);
+    //Entity a = Entity("aaa");
+    //Entity b = Entity(22);
+
+    Entity a = "aaa";	//"aaa"隐式调用构造函数
+    Entity b = 22		// 22隐式调用构造函数
+
+
+}
+
+
+```
+
+`explicit  ...构造函数`，表明构造函数只能显示调用，不能被隐式转换了。
+
+
+
+## smart pointer
+
+### unique_ptr
 
