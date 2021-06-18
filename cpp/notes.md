@@ -142,5 +142,26 @@ int main(){
 
 ## smart pointer
 
-### unique_ptr
+unique_ptr
+
+范围指针，不可以复制，只指向一个内存空间，超出使用范围制动析构
+
+使用 make_unique（c++14）
+
+shared_ptr
+
+范围指针，可以复制，每复制一个，计数器+1，其中一个复制对象超出使用范围-1，当shared_ptr的计数器=0，所有这些对象被析构
+
+
+
+## 类型转换
+
+推荐使用`static_cast、const_cast、reinterpret_cast、dynamic_cast`等方法的类型转换。
+
+| 关键词           |                             说明                             |
+| :--------------- | :----------------------------------------------------------: |
+| static_cast      |        用于良性转换，一般不会导致意外发生，风险很低。        |
+| const_cast       |  用于 const 与非 const、volatile 与非 volatile 之间的转换。  |
+| reinterpret_cast | 高度危险的转换，这种转换仅仅是对二进制位的重新解释，不会借助已有的转换规则对数据进行调整，但是可以实现最灵活的 C++ 类型转换。 |
+| dynamic_cast     |      借助 RTTI，用于类型安全的向下转型（Downcasting）。      |
 
