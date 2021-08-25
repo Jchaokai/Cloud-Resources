@@ -165,3 +165,20 @@ shared_ptr
 | reinterpret_cast | 高度危险的转换，这种转换仅仅是对二进制位的重新解释，不会借助已有的转换规则对数据进行调整，但是可以实现最灵活的 C++ 类型转换。 |
 | dynamic_cast     |      借助 RTTI，用于类型安全的向下转型（Downcasting）。      |
 
+
+
+## 多线程
+
+ 当不需要新建的线程立即执行是，使用std::async
+
+- std::thread 的析构函数需要注意：如果该线程未结束(joinable() == true)而且也不是detach()的，会报异常
+
+- std::thead::hardware_concurrency()  静态函数可以获得当前系统的cpu核心数
+- 
+
+额外知识 ：yield()  这个底层函数，先看一个有问题的情景：一个进程里的线程A 需要等线程B完成，busy waiting状态（耗费cpu资源），但cpu单核，就会出现线程A等线程B完成，但线程B永远不会被调度。这个时候yield()就可以解决问题，线程A告诉cpu，先别管我看看有没有其他的线程需要执行，过会再来执行我
+
+yield()使用情景：你使用了忙等（busy waiting），等待的时间有比较长，又想降低cpu资源，就可以使用yield()。sleep()也可以，但sleep需要告诉它一个确定的时间参数，而我们自己也不知道确切需要多长时间，yield就是cpu你先切换出去，过会再回来。
+
+线程里使用mutex，会挂起，不会忙等busy waiting，所以在 `“无锁”`或 `“busy waiting”` 两种情况下需要减少等待时间 可以使用yield()
+
