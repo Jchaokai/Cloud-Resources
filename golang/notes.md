@@ -548,7 +548,7 @@
     自定义结构体，实现 len,less,swap三个方法
 
     <p style="color:red;margin-left:40px" >---这个方法太他妈过时了   ---这个方法太他妈过时了  ---这个方法太他妈过时了</p>
-**详见 ：[ stackoverflow  [sort a map by key or value] ](https://stackoverflow.com/questions/18695346/how-to-sort-a-mapstringint-by-its-values)**
+    **详见 ：[ stackoverflow  [sort a map by key or value] ](https://stackoverflow.com/questions/18695346/how-to-sort-a-mapstringint-by-its-values)**
     
     使用go 1.8 sort包 Slice()方法
     
@@ -691,3 +691,36 @@
   
   ```
 
+
+- **优雅的关闭服务，参考Gin**
+
+    ```go
+      	go func() {
+            // 监听请求
+            if err := srv.ListenAndServe(); err != nil && err != http.ErrServerClosed {
+                log.Fatalf("listen: %s\n", err)
+            }
+        }()
+        // 优雅Shutdown（或重启）服务
+        quit := make(chan os.Signal)
+        signal.Notify(quit, os.Interrupt) // syscall.SIGKILL
+        
+        <-quit
+        
+        log.Println("Shutdown Server ...")
+        ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
+        defer cancel()
+        if err := srv.Shutdown(ctx); err != nil {
+            log.Fatal("Server Shutdown:", err)
+        }
+        select {
+        	case <-ctx.Done():
+        }
+        log.Println("Server exiting")
+    ```
+
+    
+
+- **context.WithTimeout**
+
+    
