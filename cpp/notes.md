@@ -37,7 +37,7 @@
 
  **该区域的数据在程序结束后由操作系统释放.**
 
-### 程序运行后
+### 程序运行后 
 
  **栈区：**
 
@@ -169,11 +169,11 @@ shared_ptr
 
 ## 多线程
 
- 当不需要新建的线程立即执行是，使用std::async
+ 当不需要新建的线程立即执行时，使用std::async
 
 - std::thread 的析构函数需要注意：如果该线程未结束(joinable() == true)而且也不是detach()的，会报异常
 
-- std::thead::hardware_concurrency()  静态函数可以获得当前系统的cpu核心数
+- std::thread::hardware_concurrency()  静态函数可以获得当前系统的cpu核心数
 - 
 
 额外知识 ：yield()  这个底层函数，先看一个有问题的情景：一个进程里的线程A 需要等线程B完成，busy waiting状态（耗费cpu资源），但cpu单核，就会出现线程A等线程B完成，但线程B永远不会被调度。这个时候yield()就可以解决问题，线程A告诉cpu，先别管我看看有没有其他的线程需要执行，过会再来执行我
@@ -181,4 +181,144 @@ shared_ptr
 yield()使用情景：你使用了忙等（busy waiting），等待的时间有比较长，又想降低cpu资源，就可以使用yield()。sleep()也可以，但sleep需要告诉它一个确定的时间参数，而我们自己也不知道确切需要多长时间，yield就是cpu你先切换出去，过会再回来。
 
 线程里使用mutex，会挂起，不会忙等busy waiting，所以在 `“无锁”`或 `“busy waiting”` 两种情况下需要减少等待时间 可以使用yield()
+
+
+
+## reference to pointer
+
+就像对简单数据类型的引用一样，我们可以对指针进行引用。
+
+
+```c++
+// CPP program to demonstrate references to pointers.
+#include <iostream>
+using namespace std;
+
+int main()
+{
+	int x = 10;
+
+	// ptr1 holds address of x
+	int* ptr1 = &x;
+
+	// Now ptr2 also holds address of x.
+	// But note that pt2 is an alias of ptr1.
+	// So if we change any of these two to
+	// hold some other address, the other
+	// pointer will also change.
+	int*& ptr2 = ptr1;
+
+	int y = 20;
+	ptr2 = &y;
+
+	// Below line prints 20, 20, 10, 20
+	// Note that ptr1 also starts pointing
+	// to y.
+	cout << *ptr1 << " " << *ptr2 << " "
+		<< x << " " << y;
+
+	return 0;
+}
+```
+
+应用：
+
+考虑这样一种情况，我们将指针传递给函数，希望函数修改指针以指向其他对象，并希望这些更改反映在调用者中。例如，编写一个更改其头部的链表函数时，我们将引用传递给指向头部的指针，以便该函数可以更改头部（另一种方法是返回头部）。我们也可以使用双指针实现同样的目标。
+
+```c++
+// A C++ program to demonstrate application
+// of reference to a pointer.
+#include <iostream>
+using namespace std;
+
+// A linked list node
+struct Node {
+	int data;
+	struct Node* next;
+};
+
+/* Given a reference to pointer to the head of
+a list, insert a new value x at head */
+void push(struct Node *&head, int x)
+{
+	struct Node* new_node = new Node;
+	new_node->data = x;
+	new_node->next = head;
+	head = new_node;
+}
+
+// This function prints contents of linked
+// list starting from head
+void printList(struct Node* node)
+{
+	while (node != NULL) {
+		cout << node->data << " ";
+		node = node->next;
+	}
+}
+
+/* Driver program to test above functions*/
+int main()
+{
+	/* Start with the empty list */
+	struct Node* head = NULL;
+	push(head, 1);
+	push(head, 2);
+	push(head, 3);
+
+	printList(head);
+
+	return 0;
+}
+
+```
+
+
+
+
+
+## const T&   与 T  const&
+
+前言
+
+- `const T*  `  
+- 指针可以变（**`T*`可以变**，但是前面有个`const`第一眼会让人误以为 **`T*`不可变**，所以这个写法不友好）
+    
+- 指向的内容不可以变（`T`不可以变）
+
+例子：
+
+` const T* p`       编译器从右往左解释，pointer `p`  to T  is const    
+
+`T const* p`  	 编译器从右往左解释，pointer `p`  to const T		(比上一个更好理解)
+
+`T* const p`		编译器从右往左解释，const pointer `p`  to T
+
+
+
+`T const * const&  p `  怎么解释？？
+
+- `* const & p `      ->  reference to a const pointer    (指针不能改)
+
+- const 修饰T （指向的内容也不能该）
+
+reference to  [ const pointer `p`  ]  to  const  T，
+
+还可以简化   `T const * const p` （const pointer to a const T）
+
+
+
+总结，
+
+- 从编译器角度出发，从右往左写出自己想要的规则，再也不需要理解什么`常量指针`，`指针常量` 这些sb名词了
+
+
+
+## std::mem_fn
+
+
+
+## std::accumulate
+
+
 
